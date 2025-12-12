@@ -1,3 +1,8 @@
+/*
+    Yarkin Makar
+    st141442@student.spbu.ru
+    Assignment 2a
+*/
 <<<<<<< HEAD
 #include "reverse.h"
 #include <iostream>

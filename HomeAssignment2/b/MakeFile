@@ -1,0 +1,26 @@
+CXX = g++
+CXXFLAGS = -Wall -Wextra -std=c++17
+TARGET = assignment2b
+SOURCES = main.cpp rpn.cpp
+OBJECTS = $(SOURCES:.cpp=.o)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
+
+main.o: main.cpp rpn.h
+	$(CXX) $(CXXFLAGS) -c main.cpp
+
+rpn.o: rpn.cpp rpn.h
+	$(CXX) $(CXXFLAGS) -c rpn.cpp
+
+clean:
+	rm -f $(OBJECTS) $(TARGET)
+
+rebuild: clean all
+
+run: $(TARGET)
+	./$(TARGET)
+
+.PHONY: all clean rebuild run
