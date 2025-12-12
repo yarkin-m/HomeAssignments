@@ -1,0 +1,17 @@
+CXX = g++
+CXXFLAGS = -Wall -Wextra -std=c++17
+TARGET = assignment2b
+SOURCES = main.cpp rpn.cpp
+
+all: $(TARGET)
+
+$(TARGET): $(SOURCES)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SOURCES)
+
+clean:
+	rm -f $(TARGET) *.o
+
+run: $(TARGET)
+	./$(TARGET)
+
+.PHONY: all clean run
