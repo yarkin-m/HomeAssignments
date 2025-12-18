@@ -1,63 +1,63 @@
 #include <iostream>
-#include "transformers/Weapon.h"
-#include "transformers/Alliance.h"
-#include "transformers/Transformer.h"
-#include "transformers/Autobot.h"
-#include "transformers/Decepticon.h"
-#include "transformers/Dinobot.h"
-#include "tests/WeaponTest.h"
-#include "tests/AllianceTest.h"
-#include "tests/TransformerTest.h"
-#include "tests/AutobotTest.h"
-#include "tests/DecepticonTest.h"
-#include "tests/DinobotTest.h"
+#include "Autobot.h"
+#include "Decepticon.h"
+#include "Dinobot.h"
+
+using namespace std;
 
 int main() {
-  std::cout << "=== Transformers Class Hierarchy Tests ===\n\n";
+
+  Alliance* autobotAlliance = new Alliance("Автоботы", "Оптимус Прайм");
+  Alliance* decepticonAlliance = new Alliance("Десептиконы", "Мегатрон");
   
-  std::cout << "1. Running Unit Tests:\n";
-  tests::WeaponTest::RunAllTests();
-  tests::AllianceTest::RunAllTests();
-  tests::TransformerTest::RunAllTests();
-  tests::AutobotTest::RunAllTests();
-  tests::DecepticonTest::RunAllTests();
-  tests::DinobotTest::RunAllTests();
+  Weapon* axe = new Weapon("Топор", 80);
+  Weapon* cannon = new Weapon("Пушка", 120);
+  Weapon* sword = new Weapon("Меч", 90);
   
-  std::cout << "\n2. Integration Test:\n";
+  Autobot* optimus = new Autobot("Оптимус Прайм", 15, 8, 200, axe, autobotAlliance, "грузовик", 95);
   
-  transformers::Weapon sword("Energon Sword", 45, "Melee");
-  transformers::Weapon blaster("Ion Blaster", 60, "Energy");
+  Decepticon* megatron = new Decepticon("Мегатрон", 14, 9, 180, cannon, decepticonAlliance, "самолет", true);
   
-  transformers::Alliance autobots("Autobots", "Optimus Prime", 150);
-  transformers::Alliance decepticons("Decepticons", "Megatron", 120);
+  Dinobot* grimlock = new Dinobot("Гримлок", 12, 10, 220, sword, autobotAlliance, "тираннозавр", 150);
   
-  transformers::Transformer* transformers[3];
+  cout << "\nТЕСТИРОВАНИЕ" << endl;
   
-  transformers::Autobot optimus("Optimus Prime", 12, 35, 150, &sword, &autobots,
-                                "Truck", 95, true);
-  transformers::Decepticon megatron("Megatron", 13, 40, 160, &blaster, 
-                                    &decepticons, "Tank", 90, false);
-  transformers::Dinobot grimlock("Grimlock", 9, 28, 140, &sword, &autobots,
-                                 "T-Rex", 85, true);
+  cout << "\n1. Информация о трансформерах:" << endl;
+  cout << optimus->GetInfo() << endl;
+  cout << megatron->GetInfo() << endl;
+  cout << grimlock->GetInfo() << endl;
   
-  transformers[0] = &optimus;
-  transformers[1] = &megatron;
-  transformers[2] = &grimlock;
+  cout << "\n2. Трансформации:" << endl;
+  cout << optimus->Transform() << endl;
+  cout << megatron->Transform() << endl;
+  cout << grimlock->Transform() << endl;
   
-  std::cout << "\nPolymorphism demonstration:\n";
-  for (int i = 0; i < 3; ++i) {
-    std::cout << transformers[i]->GetName() << " type: " 
-              << transformers[i]->GetType() << "\n";
-    std::cout << transformers[i]->Transform() << "\n";
-    std::cout << transformers[i]->Introduce() << "\n\n";
-  }
+  cout << "\n3. Атаки:" << endl;
+  cout << optimus->Attack() << endl;
+  cout << megatron->Attack() << endl;
+  cout << grimlock->Attack() << endl;
   
-  std::cout << "Composition and Association:\n";
-  std::cout << "Optimus's weapon: " << optimus.GetWeapon()->GetName() << "\n";
-  std::cout << "Megatron's alliance: " 
-            << megatron.GetAlliance()->GetName() << "\n";
+  cout << "\n4. Специальные способности:" << endl;
+  cout << optimus->ProtectHumans() << endl;
+  cout << megatron->Terrorize() << endl;
+  cout << grimlock->Roar() << endl;
   
-  std::cout << "\n=== All tests completed successfully! ===\n";
+  cout << "\n5. Тест get/set методов:" << endl;
+  optimus->SetPowerLevel(250);
+  cout << "Новая мощность Оптимуса: " << optimus->GetPowerLevel() << endl;
+  
+  cout << "\n6. Тест композиции и ассоциации:" << endl;
+  cout << "Оружие Оптимуса: " << optimus->GetWeapon()->GetName() 
+            << " (урон: " << optimus->GetWeapon()->GetDamage() << ")" << endl;
+  cout << "Альянс Мегатрона: " << megatron->GetAlliance()->GetName() 
+            << " (лидер: " << megatron->GetAlliance()->GetLeader() << ")" << endl;
+  
+  cout << "\nУНИЧТОЖЕНИЕ ОБЪЕКТОВ" << endl;
+  delete optimus;
+  delete megatron;
+  delete grimlock;
+  delete autobotAlliance;
+  delete decepticonAlliance;
   
   return 0;
 }
