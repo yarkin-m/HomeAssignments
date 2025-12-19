@@ -1,3 +1,8 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 5
+ */
 #include <gtest/gtest.h>
 #include "matrix.h"
 

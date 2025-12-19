@@ -18,4 +18,4 @@ st141442@student.spbu.ru
 make
 ## Run
 ./demo - main.cpp
-./tests - gtest
+./test_program - gtest

@@ -1,16 +1,12 @@
-# Assignment2b - RPN Calculator
-
+# Assignment2b
 ## Author
 Яркин Макар Антонович, 25.Б81-ММ
-
 ## Contacts
 st141442@student.spbu.ru
-
 ## Description
 Home assignment 2b:
 – Считать строку из чисел (операндов) и знаков операций (+-*/), элементы разделены пробелами
 – Интерпретировать строку как обратную польскую запись выражения и вычислить это выражение
-
 ## Build
 make
 ## USAGE

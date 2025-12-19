@@ -2,21 +2,33 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -I.
 GTEST_FLAGS = -lgtest -lgtest_main -pthread
 
-all: demo tests
+SRC = Alliance.cpp Weapon.cpp Transformer.cpp Autobot.cpp Decepticon.cpp Dinobot.cpp
+HEADERS = Alliance.h Weapon.h Transformer.h Autobot.h Decepticon.h Dinobot.h
 
-demo: Alliance.cpp Weapon.cpp Transformer.cpp Autobot.cpp Decepticon.cpp Dinobot.cpp main.cpp
-	$(CXX) $(CXXFLAGS) -o $@ $^
+OBJ = $(SRC:.cpp=.o)
+TEST_OBJ = test_transformers.o
+MAIN_OBJ = main.o
 
-tests: Alliance.cpp Weapon.cpp Transformer.cpp Autobot.cpp Decepticon.cpp Dinobot.cpp test_transformers.cpp
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_FLAGS)
+all: demo test_program
+
+%.o: %.cpp $(HEADERS)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+demo: $(OBJ) $(MAIN_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJ) $(MAIN_OBJ)
+
+
+test_program: $(OBJ) $(TEST_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJ) $(TEST_OBJ) $(GTEST_FLAGS)
+
 
 run: demo
 	./demo
 
-test: tests
-	./tests
+test: test_program
+	./test_program
 
 clean:
-	rm -f *.o demo tests
+	rm -f *.o demo test
 
 .PHONY: all clean run test

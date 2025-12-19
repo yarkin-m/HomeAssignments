@@ -1,3 +1,8 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 5
+ */
 #ifndef MATRIX_H
 #define MATRIX_H
 

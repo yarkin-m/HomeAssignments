@@ -1,3 +1,8 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 5
+ */
 #include "rational.h"
 #include <cmath>
 
