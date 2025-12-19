@@ -1,3 +1,8 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 4
+ */
 #include "Alliance.h"
 #include <iostream>
 #include <string>

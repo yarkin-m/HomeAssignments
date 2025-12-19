@@ -1,17 +1,22 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -Wextra -Werror -pedantic
-TARGET = transformers
-SRC = $(wildcard *.cpp)
+CXXFLAGS = -std=c++17 -Wall -Wextra -I.
+GTEST_FLAGS = -lgtest -lgtest_main -pthread
 
-all: $(TARGET)
+all: demo tests
 
-$(TARGET): $(SRC)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
+demo: Alliance.cpp Weapon.cpp Transformer.cpp Autobot.cpp Decepticon.cpp Dinobot.cpp main.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+tests: Alliance.cpp Weapon.cpp Transformer.cpp Autobot.cpp Decepticon.cpp Dinobot.cpp test_assignment4.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_FLAGS)
+
+run: demo
+	./demo
+
+test: tests
+	./tests
 
 clean:
-	rm -f $(TARGET) *.o
+	rm -f *.o demo tests
 
-run: $(TARGET)
-	./$(TARGET)
-
-.PHONY: all clean run
+.PHONY: all clean run test

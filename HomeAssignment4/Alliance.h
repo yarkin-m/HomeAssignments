@@ -1,3 +1,8 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 4
+ */
 #ifndef TRANSFORMERS_ALLIANCE_H
 #define TRANSFORMERS_ALLIANCE_H
 

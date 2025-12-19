@@ -1,3 +1,8 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 4
+ */
 #include "Weapon.h"
 #include <iostream>
 #include <string>

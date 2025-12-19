@@ -1,3 +1,8 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 4
+ */
 #include <iostream>
 #include "Alliance.h"
 #include "Weapon.h"
