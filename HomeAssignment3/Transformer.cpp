@@ -5,23 +5,23 @@
  */
 #include "Transformer.h"
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
 Transformer::Transformer(const string& name, int height, int weight,
-                         int power_level, Weapon* weapon, Alliance* alliance): 
+                         int power_level, std::unique_ptr<Weapon> weapon, Alliance* alliance): 
     name_(name),
     height_(height),
     weight_(weight),
     power_level_(power_level),
-    weapon_(weapon),
+    weapon_(std::move(weapon)),
     alliance_(alliance) {
         cout << "Трансформер " << name_ << " создан" << endl;
 }
 
 Transformer::~Transformer() {
   cout << "Трансформер " << name_ << " уничтожен" << endl;
-  delete weapon_;
 }
 
 string Transformer::GetName() const {
@@ -41,7 +41,7 @@ int Transformer::GetPowerLevel() const {
 }
 
 Weapon* Transformer::GetWeapon() const {
-  return weapon_;
+  return weapon_.get(); 
 }
 
 Alliance* Transformer::GetAlliance() const {
@@ -65,8 +65,8 @@ void Transformer::SetPowerLevel(int power_level) {
   power_level_ = power_level;
 }
 
-void Transformer::SetWeapon(Weapon* weapon) {
-  weapon_ = weapon;
+void Transformer::SetWeapon(std::unique_ptr<Weapon> weapon) {
+  weapon_ = std::move(weapon);
 }
 
 void Transformer::SetAlliance(Alliance* alliance) {
@@ -79,12 +79,28 @@ string Transformer::Transform() {
 }
 
 string Transformer::Attack() {
+  if (weapon_) {
+    return name_ + " атакует " + weapon_->GetName() + 
+           " с уроном " + to_string(weapon_->GetDamage());
+  }
   return name_ + " атакует с силой " + to_string(power_level_);
 }
 
 string Transformer::GetInfo() const {
-    return "Имя: " + name_ + 
-         ", \nРост: " + std::to_string(height_) + "м" +
-         ", \nВес: " + std::to_string(weight_) + "т" +
-         ", \nМощность: " + std::to_string(power_level_) + "\n";
+    string info = "Имя: " + name_ + 
+                ", \nРост: " + std::to_string(height_) + "м" +
+                ", \nВес: " + std::to_string(weight_) + "т" +
+                ", \nМощность: " + std::to_string(power_level_);
+    
+    if (weapon_) {
+        info += ", \nОружие: " + weapon_->GetName() + 
+               " (урон: " + std::to_string(weapon_->GetDamage()) + ")";
+    }
+    
+    if (alliance_) {
+        info += ", \nАльянс: " + alliance_->GetName() +
+               " (лидер: " + alliance_->GetLeader() + ")";
+    }
+    
+    return info + "\n";
 }

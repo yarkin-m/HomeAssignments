@@ -1,16 +1,12 @@
-/*
- *   Yarkin Makar
- *   st141442@student.spbu.ru
- *   Assignment 3
- */
 #include "Decepticon.h"
 #include <iostream>
 
 using namespace std;
 
-Decepticon::Decepticon(const string& name, int height, int weight,int power_level, Weapon* weapon, Alliance* alliance,
-        const string& flying_form, bool has_wings): 
-    Transformer(name, height, weight, power_level, weapon, alliance),
+Decepticon::Decepticon(const string& name, int height, int weight,int power_level, 
+                       std::unique_ptr<Weapon> weapon, Alliance* alliance,
+                       const string& flying_form, bool has_wings): 
+    Transformer(name, height, weight, power_level, std::move(weapon), alliance),
     flying_form_(flying_form),
     has_wings_(has_wings) {
         cout << "Десептикон " << name << " создан" << endl;

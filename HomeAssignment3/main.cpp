@@ -4,6 +4,7 @@
  *   Assignment 3
  */
 #include <iostream>
+#include <memory>
 #include "Autobot.h"
 #include "Decepticon.h"
 #include "Dinobot.h"
@@ -15,15 +16,21 @@ int main() {
   Alliance* autobotAlliance = new Alliance("Автоботы", "Оптимус Прайм");
   Alliance* decepticonAlliance = new Alliance("Десептиконы", "Мегатрон");
   
-  Weapon* axe = new Weapon("Топор", 80);
-  Weapon* cannon = new Weapon("Пушка", 120);
-  Weapon* sword = new Weapon("Меч", 90);
+  auto axe = std::make_unique<Weapon>("Топор", 80);
+  auto cannon = std::make_unique<Weapon>("Пушка", 120);
+  auto sword = std::make_unique<Weapon>("Меч", 90);
   
-  Autobot* optimus = new Autobot("Оптимус Прайм", 15, 8, 200, axe, autobotAlliance, "грузовик", 95);
+  Autobot* optimus = new Autobot("Оптимус Прайм", 15, 8, 200, 
+                                 std::move(axe), autobotAlliance, 
+                                 "грузовик", 95);
   
-  Decepticon* megatron = new Decepticon("Мегатрон", 14, 9, 180, cannon, decepticonAlliance, "самолет", true);
+  Decepticon* megatron = new Decepticon("Мегатрон", 14, 9, 180, 
+                                        std::move(cannon), decepticonAlliance, 
+                                        "самолет", true);
   
-  Dinobot* grimlock = new Dinobot("Гримлок", 12, 10, 220, sword, autobotAlliance, "тираннозавр", 150);
+  Dinobot* grimlock = new Dinobot("Гримлок", 12, 10, 220, 
+                                  std::move(sword), autobotAlliance, 
+                                  "тираннозавр", 150);
   
   cout << "\nТЕСТИРОВАНИЕ" << endl;
   

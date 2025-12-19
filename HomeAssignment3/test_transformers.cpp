@@ -4,6 +4,7 @@
  *   Assignment 3
  */
 #include <gtest/gtest.h>
+#include <memory>
 #include "Alliance.h"
 #include "Weapon.h"
 #include "Transformer.h"
@@ -70,9 +71,9 @@ TEST(WeaponTest, DeepCopy) {
 // Transformer tests
 TEST(TransformerTest, ConstructorAndGetters) {
     Alliance alliance("Автоботы", "Оптимус");
-    Weapon weapon("Меч", 80);
+    auto weapon = std::make_unique<Weapon>("Меч", 80);
     
-    Transformer optimus("Оптимус", 15, 8, 200, &weapon, &alliance);
+    Transformer optimus("Оптимус", 15, 8, 200, std::move(weapon), &alliance);
     
     EXPECT_EQ(optimus.GetName(), "Оптимус");
     EXPECT_EQ(optimus.GetHeight(), 15);
@@ -111,10 +112,10 @@ TEST(TransformerTest, Methods) {
 }
 
 TEST(TransformerTest, Composition) {
-    Weapon* weapon = new Weapon("Пушка", 120);
+    auto weapon = std::make_unique<Weapon>("Пушка", 120);
     Alliance* alliance = new Alliance("Фракция", "Лидер");
     
-    Transformer t("Тест", 10, 5, 100, weapon, alliance);
+    Transformer t("Тест", 10, 5, 100, std::move(weapon), alliance);
     
     EXPECT_EQ(t.GetWeapon()->GetName(), "Пушка");
     EXPECT_EQ(t.GetAlliance()->GetName(), "Фракция");

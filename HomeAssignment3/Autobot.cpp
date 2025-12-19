@@ -8,9 +8,10 @@
 
 using namespace std;
 
-Autobot::Autobot(const std::string& name, int height, int weight, int power_level, Weapon* weapon, Alliance* alliance, 
-    const std::string& vehicle_form, int courage_level):
-        Transformer(name, height, weight, power_level, weapon, alliance),
+Autobot::Autobot(const std::string& name, int height, int weight, int power_level, 
+                 std::unique_ptr<Weapon> weapon, Alliance* alliance, 
+                 const std::string& vehicle_form, int courage_level):
+        Transformer(name, height, weight, power_level, std::move(weapon), alliance),
         vehicle_form_(vehicle_form), courage_level_(courage_level) {
             cout << "Автобот " << name << " создан" << endl;
 }

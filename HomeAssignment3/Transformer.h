@@ -7,6 +7,7 @@
 #define TRANSFORMERS_TRANSFORMER_H
 
 #include <string>
+#include <memory>  
 #include "Weapon.h"
 #include "Alliance.h"
 
@@ -14,7 +15,7 @@
 class Transformer {
  public:
   Transformer(const std::string& name, int height, int weight, int power_level,
-              Weapon* weapon, Alliance* alliance);
+              std::unique_ptr<Weapon> weapon, Alliance* alliance);  
   virtual ~Transformer();
 
   std::string GetName() const;
@@ -28,7 +29,7 @@ class Transformer {
   void SetHeight(int height);
   void SetWeight(int weight);
   void SetPowerLevel(int power_level);
-  void SetWeapon(Weapon* weapon);
+  void SetWeapon(std::unique_ptr<Weapon> weapon);  
   void SetAlliance(Alliance* alliance);
 
   virtual std::string Transform();
@@ -41,8 +42,8 @@ class Transformer {
   int height_;       
   int weight_;        
   int power_level_;   
-  Weapon* weapon_;    // композиция 
-  Alliance* alliance_; // ассоциация 
+  std::unique_ptr<Weapon> weapon_;    // композиция - unique_ptr
+  Alliance* alliance_; // ассоциация - сырой указатель
 };
 
-#endif  
+#endif

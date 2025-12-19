@@ -8,11 +8,13 @@
 
 #include "Transformer.h"
 #include <string>
+#include <memory>  
 
 // наследник Автобот
 class Autobot : public Transformer {
  public:
-  Autobot(const std::string& name, int height, int weight, int power_level, Weapon* weapon, Alliance* alliance, 
+  Autobot(const std::string& name, int height, int weight, int power_level, 
+          std::unique_ptr<Weapon> weapon, Alliance* alliance,  
           const std::string& vehicle_form, int courage_level);
 
   std::string GetVehicleForm() const;
