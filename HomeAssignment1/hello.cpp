@@ -1,3 +1,8 @@
+/*
+ *    Yarkin Makar
+ *    st141442@student.spbu.ru
+ *    HomeAssignment1
+ */
 #include "hello.h"
 #include <iostream>
 
@@ -6,8 +11,8 @@ void myproject::sayHello() {
     while (true)
     {
         std::string word;
-        std::cout << "Напишите слово: ";
-        std::cin >> word ;
+        std::cout << "Напишите строку: ";
+        getline(std::cin, word);
         if (word == "-"){
             break;
         }
