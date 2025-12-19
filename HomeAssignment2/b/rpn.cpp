@@ -1,3 +1,8 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 2b
+ */
 #include "rpn.h"
 #include <sstream>
 #include <stack>
