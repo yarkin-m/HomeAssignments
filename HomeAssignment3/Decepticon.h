@@ -1,4 +1,8 @@
-// Decepticon.h
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 3
+ */
 #ifndef TRANSFORMERS_DECEPTICON_H
 #define TRANSFORMERS_DECEPTICON_H
 

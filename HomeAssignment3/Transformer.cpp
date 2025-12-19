@@ -1,3 +1,8 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 3
+ */
 #include "Transformer.h"
 #include <iostream>
 

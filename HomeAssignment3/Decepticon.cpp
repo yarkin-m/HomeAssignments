@@ -1,4 +1,8 @@
-// Decepticon.cpp
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 3
+ */
 #include "Decepticon.h"
 #include <iostream>
 

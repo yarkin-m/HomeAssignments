@@ -1,21 +1,22 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall
-TARGET = transformers
-SOURCES = $(wildcard *.cpp)
-OBJECTS = $(SOURCES:.cpp=.o)
+CXXFLAGS = -std=c++17 -Wall -Wextra -I.
+GTEST_FLAGS = -lgtest -lgtest_main -pthread
 
-all: $(TARGET)
+all: demo tests
 
-$(TARGET): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
+demo: Alliance.cpp Weapon.cpp Transformer.cpp Autobot.cpp Decepticon.cpp Dinobot.cpp main.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+tests: Alliance.cpp Weapon.cpp Transformer.cpp Autobot.cpp Decepticon.cpp Dinobot.cpp test_transformers.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_FLAGS)
+
+run: demo
+	./demo
+
+test: tests
+	./tests
 
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -f *.o demo tests
 
-run: $(TARGET)
-	./$(TARGET)
-
-.PHONY: all clean run
+.PHONY: all clean run test

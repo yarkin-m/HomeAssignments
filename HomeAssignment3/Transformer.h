@@ -1,4 +1,8 @@
-
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 3
+ */
 #ifndef TRANSFORMERS_TRANSFORMER_H
 #define TRANSFORMERS_TRANSFORMER_H
 

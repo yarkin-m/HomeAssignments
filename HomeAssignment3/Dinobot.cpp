@@ -1,4 +1,8 @@
-// Dinobot.cpp
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 3
+ */
 #include "Dinobot.h"
 #include <iostream>
 
