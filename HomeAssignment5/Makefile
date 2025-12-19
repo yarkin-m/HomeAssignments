@@ -1,31 +1,48 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -I.
-GTEST_FLAGS = -lgtest -lgtest_main -pthread
+GTEST_FLAGS = -std=c++17 -Wall -Wextra -I. -pthread -lgtest -lgtest_main
 
-all: demo tests
+MAIN_SRC = main.cpp
+MAIN_EXE = demo
 
-demo: rational.o main.o
-	$(CXX) $(CXXFLAGS) -o $@ $^
+SRC = rational.cpp
+OBJ = $(SRC:.cpp=.o)
 
-tests: rational.o test_matrix.o
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_FLAGS)
+HEADERS = rational.h matrix.h
 
-rational.o: rational.cpp rational.h matrix.h
-	$(CXX) $(CXXFLAGS) -c rational.cpp -o rational.o
+TEST_SRCS = rational_invariant_test.cpp \
+            rational_matrix_addition_test.cpp \
+            rational_matrix_multiplication_test.cpp \
+            rational_scalar_multiplication_test.cpp \
+            rational_transpose_test.cpp \
+            test_matrix.cpp
 
-main.o: main.cpp rational.h matrix.h
-	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
+TEST_EXES = $(TEST_SRCS:.cpp=)
 
-test_matrix.o: test_matrix.cpp rational.h matrix.h
-	$(CXX) $(CXXFLAGS) -c test_matrix.cpp -o test_matrix.o
+all: $(MAIN_EXE) $(TEST_EXES)
 
-run: demo
-	./demo
+$(MAIN_EXE): $(MAIN_SRC) $(OBJ) $(HEADERS)
+	$(CXX) $(CXXFLAGS) -o $@ $(MAIN_SRC) $(OBJ)
 
-test: tests
-	./tests
+%.o: %.cpp $(HEADERS)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+%test: %test.cpp $(OBJ) $(HEADERS)
+	$(CXX) $(CXXFLAGS) -pthread $< $(OBJ) -o $@ -lgtest -lgtest_main
+
+test_matrix: test_matrix.cpp $(OBJ) $(HEADERS)
+	$(CXX) $(CXXFLAGS) -pthread $< $(OBJ) -o $@ -lgtest -lgtest_main
+
+test: $(TEST_EXES)
+	@for test in $(TEST_EXES); do \
+		echo "Running $$test..."; \
+		./$$test || exit 1; \
+	done
 
 clean:
-	rm -f *.o demo tests
+	rm -f $(MAIN_EXE) $(TEST_EXES) *.o
 
-.PHONY: all clean run test
+run: $(MAIN_EXE)
+	./$(MAIN_EXE)
+
+.PHONY: all test clean run

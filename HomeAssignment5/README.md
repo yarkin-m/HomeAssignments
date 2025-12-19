@@ -14,6 +14,14 @@ st141442@student.spbu.ru
 с плавающей запятой и самостоятельно реализованным типом «рациональное число». При реализации типа
 «рациональное число» проверено сохранение инвариантности.
 ## Build
-make
+make demo - main.cpp
+make test - gtest
 ## Run
-./assignment2b
+./demo
+# Конкретные тесты
+./rational_invariant_test
+./rational_matrix_addition_test
+./rational_matrix_multiplication_test
+./rational_scalar_multiplication_test
+./rational_transpose_test
+./test_matrix
