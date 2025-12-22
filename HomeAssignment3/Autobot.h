@@ -8,7 +8,7 @@
 
 #include "Transformer.h"
 #include <string>
-#include <memory>  
+#include <memory> 
 
 // Autobot
 class Autobot : public Transformer {
