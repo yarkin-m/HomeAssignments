@@ -11,6 +11,7 @@
 #include "Decepticon.h"
 #include "Dinobot.h"
 #include <vector>
+#include <memory>
 
 using namespace std;
 /*
@@ -239,9 +240,9 @@ int main() {
   Alliance* autobotAlliance = new Alliance("Autobots", "Optimus Prime");
   Alliance* decepticonAlliance = new Alliance("Decepticons", "Megatron");
   
-  Weapon* axe = new Weapon("Axe", 80);
-  Weapon* cannon = new Weapon("Cannon", 120);
-  Weapon* sword = new Weapon("Sword", 90);
+  Weapon* axe = new std::make_unique<Weapon>("Axe", 80);
+  Weapon* cannon = new std::make_unique<Weapon>("Cannon", 120);
+  Weapon* sword = new std::make_unique<Weapon>("Sword", 90);
   
   Autobot* optimus = new Autobot("Optimus Prime", 15, 8, 200, axe, autobotAlliance, "truck", 95);
   
