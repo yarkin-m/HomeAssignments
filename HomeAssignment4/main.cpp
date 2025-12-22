@@ -129,9 +129,9 @@ void TestConstructorOverloading() {
     cout << "\n\n6. COMPLEX COPY (with weapons and alliances):" << endl;
 
     Alliance* testAlliance = new Alliance("Test", "Leader");
-    Weapon* testWeapon = new Weapon("Test weapon", 75);
+    auto testWeapon = std::make_unique<Weapon>("Test weapon", 75);
     
-    Autobot original("Original", 12, 6, 180, testWeapon, testAlliance, "truck", 85);
+    Autobot original("Original", 12, 6, 180, std::move(testWeapon), testAlliance, "truck", 85);
     cout << "Created original: " << original << endl;
     cout << "Original weapon: " << original.GetWeapon()->GetName() << endl;
     
@@ -148,7 +148,6 @@ void TestConstructorOverloading() {
     cout << "Copy weapon damage: " << copy.GetWeapon()->GetDamage() << endl;
     
     delete testAlliance;
-    delete testWeapon;
   }
 */
 void TestVirtualMethods() {
@@ -240,15 +239,21 @@ int main() {
   Alliance* autobotAlliance = new Alliance("Autobots", "Optimus Prime");
   Alliance* decepticonAlliance = new Alliance("Decepticons", "Megatron");
   
-  Weapon* axe = new std::make_unique<Weapon>("Axe", 80);
-  Weapon* cannon = new std::make_unique<Weapon>("Cannon", 120);
-  Weapon* sword = new std::make_unique<Weapon>("Sword", 90);
+  auto axe = std::make_unique<Weapon>("Axe", 80);
+  auto cannon = std::make_unique<Weapon>("Cannon", 120);
+  auto sword = std::make_unique<Weapon>("Sword", 90);
   
-  Autobot* optimus = new Autobot("Optimus Prime", 15, 8, 200, axe, autobotAlliance, "truck", 95);
+  Autobot* optimus = new Autobot("Optimus Prime", 15, 8, 200, 
+                                 std::move(axe), autobotAlliance, 
+                                 "truck", 95);
   
-  Decepticon* megatron = new Decepticon("Megatron", 14, 9, 180, cannon, decepticonAlliance, "airplane", true);
+  Decepticon* megatron = new Decepticon("Megatron", 14, 9, 180, 
+                                        std::move(cannon), decepticonAlliance, 
+                                        "airplane", true);
   
-  Dinobot* grimlock = new Dinobot("Grimlock", 12, 10, 220, sword, autobotAlliance, "tyrannosaurus", 150);
+  Dinobot* grimlock = new Dinobot("Grimlock", 12, 10, 220, 
+                                  std::move(sword), autobotAlliance, 
+                                  "tyrannosaurus", 150);
   
   cout << "\nTESTING" << endl;
   /*
@@ -285,7 +290,7 @@ int main() {
   
   cout << "\nTest operator <<" << endl;
   cout << "Autobot alliance: " << *autobotAlliance << endl;      
-  cout << "Weapon: " << *sword << endl;         
+  cout << "Weapon: " << *optimus->GetWeapon() << endl;  // Используем оружие Оптимуса      
   cout << "Optimus Prime: "<< *optimus << endl;
   
   //TestConstructorOverloading();

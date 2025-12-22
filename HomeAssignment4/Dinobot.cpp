@@ -1,8 +1,3 @@
-/*
- *   Yarkin Makar
- *   st141442@student.spbu.ru
- *   Assignment 4
- */
 #include "Dinobot.h"
 #include <iostream>
 #include <string>
@@ -11,7 +6,7 @@ using namespace std;
 
 Dinobot::Dinobot(const string& name, int height, int weight, int power_level,std::unique_ptr<Weapon> weapon, Alliance* alliance,
     const string& dinosaur_form, int roar_power): 
-        Transformer(name, height, weight, power_level, weapon, alliance),
+        Transformer(name, height, weight, power_level, std::move(weapon), alliance),
         dinosaur_form_(dinosaur_form),
         roar_power_(roar_power) {
             cout << "Dinobot " << name << " created" << endl;
@@ -38,11 +33,9 @@ Dinobot::Dinobot(const Dinobot& other):
     cout << "Copy of dinobot " << GetName() << " created" << endl;
 }
 
-
 string Dinobot::GetDinosaurForm() const {
   return dinosaur_form_;
 }
-
 
 int Dinobot::GetRoarPower() const {
   return roar_power_;
@@ -55,7 +48,6 @@ void Dinobot::SetDinosaurForm(const string& dinosaur_form) {
 void Dinobot::SetRoarPower(int roar_power) {
   roar_power_ = roar_power;
 }
-
 
 void Dinobot::SpecialAbility() const {
     cout << "Dinobot::SpecialAbility() - Dinobot class" << endl;
@@ -82,13 +74,3 @@ void Dinobot::Roar() const {
     cout << "Dinobot::Roar() - Dinobot class" << endl;
     cout << GetName() << " roars with power " << roar_power_ << " decibels!" << endl;
 }
-
-/*
-string Dinobot::Roar() {
-  return GetName() + " roars with power " + to_string(roar_power_) +
-         " decibels";
-}
-
-string Dinobot::Transform() {
-  return GetName() + " transforms into " + dinosaur_form_;
-}*/

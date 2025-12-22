@@ -1,8 +1,3 @@
-/*
- *   Yarkin Makar
- *   st141442@student.spbu.ru
- *   Assignment 4
- */
 #include "Decepticon.h"
 #include <iostream>
 #include <string>
@@ -11,7 +6,7 @@ using namespace std;
 
 Decepticon::Decepticon(const string& name, int height, int weight,int power_level,std::unique_ptr<Weapon> weapon, Alliance* alliance,
         const string& flying_form, bool has_wings): 
-    Transformer(name, height, weight, power_level, weapon, alliance),
+    Transformer(name, height, weight, power_level, std::move(weapon), alliance),
     flying_form_(flying_form),
     has_wings_(has_wings) {
         cout << "Decepticon " << name << " created" << endl;
@@ -38,7 +33,6 @@ Decepticon::Decepticon(const Decepticon& other):
     cout << "Copy of decepticon " << GetName() << " created" << endl;
 }
 
-
 string Decepticon::GetFlyingForm() const {
   return flying_form_;
 }
@@ -47,7 +41,6 @@ bool Decepticon::GetHasWings() const {
   return has_wings_;
 }
 
-
 void Decepticon::SetFlyingForm(const string& flying_form) {
   flying_form_ = flying_form;
 }
@@ -55,7 +48,6 @@ void Decepticon::SetFlyingForm(const string& flying_form) {
 void Decepticon::SetHasWings(bool has_wings) {
   has_wings_ = has_wings;
 }
-
 
 void Decepticon::SpecialAbility() const {
     cout << "Decepticon::SpecialAbility() - Decepticon class" << endl;
@@ -82,17 +74,3 @@ void Decepticon::Terrorize() const {
     cout << "Decepticon::Terrorize() - Decepticon class" << endl;
     cout << GetName() << " spreads fear and destruction!" << endl;
 }
-
-/*
-string Decepticon::Terrorize() {
-  return GetName() + " spreads terror with aerial form " + flying_form_;
-}
-
-string Decepticon::Attack() {
-  string wing_info = has_wings_ ? " with wings" : " without wings";
-  return GetName() + " attacks" + wing_info;
-}
-
-string Decepticon::Transform() {
-  return GetName() + " transforms into " + flying_form_;
-}*/

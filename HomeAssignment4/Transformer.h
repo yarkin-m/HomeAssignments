@@ -10,15 +10,17 @@
 #include "Weapon.h"
 #include "Alliance.h"
 #include <memory> 
+#include <iostream>
 
 // Base class
 class Transformer {
  public:
   Transformer(const std::string& name, int height, int weight, int power_level,
-              std::unique_ptr<Weapon> weapon_;, Alliance* alliance);
+              std::unique_ptr<Weapon> weapon, Alliance* alliance);
   Transformer(const std::string& name);
   Transformer(const std::string& name, int power_level);
-  Transformer(const Transformer& other);
+  Transformer(const Transformer& other); 
+  Transformer& operator=(const Transformer& other) = delete; 
 
   virtual ~Transformer();
   friend std::ostream& operator<<(std::ostream& os, const Transformer& transformer);
@@ -34,7 +36,7 @@ class Transformer {
   void SetHeight(int height);
   void SetWeight(int weight);
   void SetPowerLevel(int power_level);
-  void SetWeapon(std::unique_ptr<Weapon> weapon_);
+  void SetWeapon(std::unique_ptr<Weapon> weapon);
   void SetAlliance(Alliance* alliance);
 
   virtual void SpecialAbility() const = 0;
@@ -56,8 +58,8 @@ class Transformer {
   int height_;       
   int weight_;        
   int power_level_;   
-  std::unique_ptr<Weapon> weapon_;;    // композиция 
-  Alliance* alliance_; // ассоциация 
+  std::unique_ptr<Weapon> weapon_;   
+  Alliance* alliance_;
 };
 
-#endif  
+#endif

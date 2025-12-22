@@ -6,7 +6,7 @@
 #include "Transformer.h"
 #include <iostream>
 #include <string>
-
+#include <memory>
 
 using namespace std;
 
@@ -16,7 +16,7 @@ Transformer::Transformer(const string& name, int height, int weight,
     height_(height),
     weight_(weight),
     power_level_(power_level),
-    weapon_(weapon),
+    weapon_(std::move(weapon)),  // Используем std::move для передачи unique_ptr
     alliance_(alliance) {
         cout << "Transformer " << name_ << " created" << endl;
 }
@@ -46,14 +46,20 @@ Transformer::Transformer(const Transformer& other)
       height_(other.height_),
       weight_(other.weight_),
       power_level_(other.power_level_),
-      weapon_(other.weapon_ ? new Weapon(*other.weapon_) : nullptr),
+      weapon_(nullptr),  // Сначала инициализируем как nullptr
       alliance_(other.alliance_) {
+    
+    // Глубокое копирование оружия, если оно существует
+    if (other.weapon_) {
+        weapon_ = std::make_unique<Weapon>(*other.weapon_);  // Используем make_unique
+    }
+    
     cout << "Copy of transformer " << name_ << " created" << endl;
 }
 
 Transformer::~Transformer() {
   cout << "Transformer " << name_ << " destroyed" << endl;
-  delete weapon_;
+  // unique_ptr автоматически удаляет объект, НЕ вызываем delete weapon_
 }
 
 string Transformer::GetName() const {
@@ -73,7 +79,7 @@ int Transformer::GetPowerLevel() const {
 }
 
 Weapon* Transformer::GetWeapon() const {
-  return weapon_;
+  return weapon_.get();  // Используем .get() для получения сырого указателя
 }
 
 Alliance* Transformer::GetAlliance() const {
@@ -97,8 +103,8 @@ void Transformer::SetPowerLevel(int power_level) {
   power_level_ = power_level;
 }
 
-void Transformer::SetWeapon(Weapon* weapon) {
-  weapon_ = weapon;
+void Transformer::SetWeapon(std::unique_ptr<Weapon> weapon) {
+  weapon_ = std::move(weapon);  // Используем std::move
 }
 
 void Transformer::SetAlliance(Alliance* alliance) {
@@ -136,10 +142,22 @@ void Transformer::Repair() const {
 }
 
 string Transformer::GetInfo() const {
-    return "Name: " + name_ + 
-         ", \nHeight: " + std::to_string(height_) + "m" +
-         ", \nWeight: " + std::to_string(weight_) + "t" +
-         ", \nPower: " + std::to_string(power_level_) + "\n";
+    string info = "Name: " + name_ + 
+                ", \nHeight: " + std::to_string(height_) + "m" +
+                ", \nWeight: " + std::to_string(weight_) + "t" +
+                ", \nPower: " + std::to_string(power_level_);
+    
+    if (weapon_) {
+        info += ", \nWeapon: " + weapon_->GetName() + 
+               " (damage: " + std::to_string(weapon_->GetDamage()) + ")";
+    }
+    
+    if (alliance_) {
+        info += ", \nAlliance: " + alliance_->GetName() +
+               " (leader: " + alliance_->GetLeader() + ")";
+    }
+    
+    return info + "\n";
 }
 
 ostream& operator<<(std::ostream& os, const Transformer& transformer) {

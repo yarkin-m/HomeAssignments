@@ -1,8 +1,3 @@
-/*
- *   Yarkin Makar
- *   st141442@student.spbu.ru
- *   Assignment 4
- */
 #include <gtest/gtest.h>
 #include <vector>
 #include <sstream>
@@ -16,7 +11,6 @@
 #include "Dinobot.h"
 
 using namespace std;
-
 
 TEST(Assignment4Test, OperatorOutput) {
     Alliance alliance("Autobots", "Optimus Prime");
@@ -156,9 +150,9 @@ TEST(Assignment4Test, VectorOfNineObjects) {
 TEST(Assignment4Test, AllMethodsFromAssignment3) {
     
     Alliance* alliance = new Alliance("Autobots", "Optimus");
-    Weapon* weapon = new Weapon("Sword", 80);
+    auto weapon = std::make_unique<Weapon>("Sword", 80);
     
-    Autobot autobot("Test", 10, 5, 100, weapon, alliance, "form", 70);
+    Autobot autobot("Test", 10, 5, 100, std::move(weapon), alliance, "form", 70);
     
     EXPECT_EQ(autobot.GetName(), "Test");
     EXPECT_EQ(autobot.GetHeight(), 10);
@@ -172,22 +166,18 @@ TEST(Assignment4Test, AllMethodsFromAssignment3) {
     
     autobot.SetVehicleForm("new form");
     EXPECT_EQ(autobot.GetVehicleForm(), "new form");
-    /*
-    string protectResult = autobot.ProtectHumans();
-    EXPECT_NE(protectResult.find("protects"), string::npos);
-    */
+    
     EXPECT_EQ(autobot.GetWeapon()->GetName(), "Sword");
     EXPECT_EQ(autobot.GetAlliance()->GetName(), "Autobots");
     
     delete alliance;
-    delete weapon;
 }
 
 TEST(Assignment4Test, DeepCopy) {
-    Weapon* originalWeapon = new Weapon("Original weapon", 100);
+    auto originalWeapon = std::make_unique<Weapon>("Original weapon", 100);
     Alliance* alliance = new Alliance("Alliance", "Leader");
     
-    Autobot original("Original", 10, 5, 200, originalWeapon, alliance, "form", 80);
+    Autobot original("Original", 10, 5, 200, std::move(originalWeapon), alliance, "form", 80);
     
     Autobot copy = original;
     
@@ -202,7 +192,6 @@ TEST(Assignment4Test, DeepCopy) {
     EXPECT_EQ(copy.GetPowerLevel(), 200); 
     
     delete alliance;
-    delete originalWeapon;
 }
 
 TEST(AllianceTest, Assignment4) {
@@ -259,7 +248,6 @@ TEST(DinobotTest, Assignment4) {
     string output = testing::internal::GetCapturedStdout();
     EXPECT_NE(output.find("Dinobot::ShowInfo()"), string::npos);
 }
-
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);    
