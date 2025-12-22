@@ -13,7 +13,7 @@
 // Autobot
 class Autobot : public Transformer {
  public:
-  Autobot(const std::string& name, int height, int weight, int power_level, std::unique_ptr<Weapon> weapon_;, Alliance* alliance, 
+  Autobot(const std::string& name, int height, int weight, int power_level, std::unique_ptr<Weapon> weapon_, Alliance* alliance, 
           const std::string& vehicle_form, int courage_level);
   Autobot(const std::string& name);
   Autobot(const std::string& name, const std::string& vehicle_form);

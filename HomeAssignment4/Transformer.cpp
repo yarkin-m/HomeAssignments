@@ -10,7 +10,7 @@
 using namespace std;
 
 Transformer::Transformer(const string& name, int height, int weight,
-                         int power_level, std::unique_ptr<Weapon> weapon_;, Alliance* alliance): 
+                         int power_level, std::unique_ptr<Weapon> weapon_, Alliance* alliance): 
     name_(name),
     height_(height),
     weight_(weight),
@@ -96,7 +96,7 @@ void Transformer::SetPowerLevel(int power_level) {
   power_level_ = power_level;
 }
 
-void Transformer::SetWeapon(Weapon* weapon) {
+void Transformer::SetWeapon(std::unique_ptr<Weapon> weapon) {
   weapon_ = weapon;
 }
 

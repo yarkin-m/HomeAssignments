@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Autobot::Autobot(const string& name, int height, int weight, int power_level, Weapon* weapon, Alliance* alliance, 
+Autobot::Autobot(const string& name, int height, int weight, int power_level, std::unique_ptr<Weapon> weapon, Alliance* alliance, 
     const string& vehicle_form, int courage_level):
         Transformer(name, height, weight, power_level, weapon, alliance),
         vehicle_form_(vehicle_form), courage_level_(courage_level) {
