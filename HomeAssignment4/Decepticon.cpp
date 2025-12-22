@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Decepticon::Decepticon(const string& name, int height, int weight,int power_level, std::unique_ptr<Weapon> weapon, Alliance* alliance,
+Decepticon::Decepticon(const string& name, int height, int weight,int power_level,std::unique_ptr<Weapon> weapon, Alliance* alliance,
         const string& flying_form, bool has_wings): 
     Transformer(name, height, weight, power_level, weapon, alliance),
     flying_form_(flying_form),

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 
 Transformer::Transformer(const string& name, int height, int weight,
@@ -96,7 +97,7 @@ void Transformer::SetPowerLevel(int power_level) {
   power_level_ = power_level;
 }
 
-void Transformer::SetWeapon(std::unique_ptr<Weapon> weapon) {
+void Transformer::SetWeapon(Weapon* weapon) {
   weapon_ = weapon;
 }
 
