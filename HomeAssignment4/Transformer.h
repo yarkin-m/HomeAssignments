@@ -14,7 +14,7 @@
 class Transformer {
  public:
   Transformer(const std::string& name, int height, int weight, int power_level,
-              Weapon* weapon, Alliance* alliance);
+              std::unique_ptr<Weapon> weapon_;, Alliance* alliance);
   Transformer(const std::string& name);
   Transformer(const std::string& name, int power_level);
   Transformer(const Transformer& other);
@@ -55,7 +55,7 @@ class Transformer {
   int height_;       
   int weight_;        
   int power_level_;   
-  Weapon* weapon_;    // композиция 
+  std::unique_ptr<Weapon> weapon_;;    // композиция 
   Alliance* alliance_; // ассоциация 
 };
 
