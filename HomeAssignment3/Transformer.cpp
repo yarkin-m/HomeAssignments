@@ -60,7 +60,7 @@ void Transformer::SetPowerLevel(int power_level) {
   power_level_ = power_level;
 }
 
-void Transformer::SetWeapon(Weapon* weapon) {
+void Transformer::SetWeapon(std::unique_ptr<Weapon> weapon_; weapon) {
   weapon_ = weapon;
 }
 

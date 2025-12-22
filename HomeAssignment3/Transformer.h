@@ -5,6 +5,7 @@
 #include <string>
 #include "Weapon.h"
 #include "Alliance.h"
+#include <memory> 
 
 // Базовый класс
 class Transformer {
