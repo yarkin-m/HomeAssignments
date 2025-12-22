@@ -11,7 +11,7 @@
 #include "Weapon.h"
 #include "Alliance.h"
 
-// Базовый класс
+// Base class
 class Transformer {
  public:
   Transformer(const std::string& name, int height, int weight, int power_level,
@@ -42,8 +42,8 @@ class Transformer {
   int height_;       
   int weight_;        
   int power_level_;   
-  std::unique_ptr<Weapon> weapon_;    // композиция - unique_ptr
-  Alliance* alliance_; // ассоциация - сырой указатель
+  std::unique_ptr<Weapon> weapon_;    // composition
+  Alliance* alliance_; // association
 };
 
 #endif

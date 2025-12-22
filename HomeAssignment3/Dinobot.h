@@ -8,13 +8,13 @@
 
 #include "Transformer.h"
 #include <string>
-#include <memory>  // добавлено для unique_ptr
+#include <memory>
 
-// наследник Динобот
+// Dinobot
 class Dinobot : public Transformer {
  public:
   Dinobot(const std::string& name, int height, int weight, int power_level, 
-          std::unique_ptr<Weapon> weapon, Alliance* alliance,  // ИЗМЕНЕНО
+          std::unique_ptr<Weapon> weapon, Alliance* alliance,
           const std::string& dinosaur_form, int roar_power);
 
   std::string GetDinosaurForm() const;

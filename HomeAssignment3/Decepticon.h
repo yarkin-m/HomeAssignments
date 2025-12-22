@@ -8,13 +8,13 @@
 
 #include "Transformer.h"
 #include <string>
-#include <memory>  // добавлено для unique_ptr
+#include <memory> 
 
-// наследник Десептикон
+// Decepticon
 class Decepticon : public Transformer {
  public:
   Decepticon(const std::string& name, int height, int weight, int power_level,
-             std::unique_ptr<Weapon> weapon, Alliance* alliance,  // ИЗМЕНЕНО
+             std::unique_ptr<Weapon> weapon, Alliance* alliance,
              const std::string& flying_form, bool has_wings);
 
   std::string GetFlyingForm() const;

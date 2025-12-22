@@ -10,7 +10,7 @@
 #include <string>
 #include <memory>  
 
-// наследник Автобот
+// Autobot
 class Autobot : public Transformer {
  public:
   Autobot(const std::string& name, int height, int weight, int power_level, 

@@ -13,7 +13,7 @@ Autobot::Autobot(const std::string& name, int height, int weight, int power_leve
                  const std::string& vehicle_form, int courage_level):
         Transformer(name, height, weight, power_level, std::move(weapon), alliance),
         vehicle_form_(vehicle_form), courage_level_(courage_level) {
-            cout << "Автобот " << name << " создан" << endl;
+            cout << "Autobot " << name << " created" << endl;
 }
 
 string Autobot::GetVehicleForm() const {
@@ -24,7 +24,7 @@ int Autobot::GetCourageLevel() const {
   return courage_level_;
 }
 
-//setы
+//setters
 void Autobot::SetVehicleForm(const std::string& vehicle_form) {
   vehicle_form_ = vehicle_form;
 }
@@ -33,11 +33,11 @@ void Autobot::SetCourageLevel(int courage_level) {
   courage_level_ = courage_level;
 }
 
-//доп.
+//additional methods
 string Autobot::ProtectHumans() {
-  return GetName() + " защищает людей с уровнем храбрости " + to_string(courage_level_);
+  return GetName() + " protects people with courage level " + to_string(courage_level_);
 }
 
 std::string Autobot::Transform() {
-  return GetName() + " трансформируется в " + vehicle_form_;
+  return GetName() + " transforms into " + vehicle_form_;
 }

@@ -10,11 +10,11 @@ using namespace std;
 
 Alliance::Alliance(const string& name, const string& leader): 
     name_(name), leader_(leader) {
-        cout << "Альянс: " << name_ << endl;
+        cout << "Alliance: " << name_ << endl;
     }
 
 Alliance::~Alliance() {
-    cout << "Альянс " << name_ << " распущен" << endl;
+    cout << "Alliance " << name_ << " disbanded" << endl;
 }
 
 string Alliance::GetName() const {

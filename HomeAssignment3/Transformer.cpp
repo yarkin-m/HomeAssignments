@@ -17,11 +17,11 @@ Transformer::Transformer(const string& name, int height, int weight,
     power_level_(power_level),
     weapon_(std::move(weapon)),
     alliance_(alliance) {
-        cout << "Трансформер " << name_ << " создан" << endl;
+        cout << "Transformer " << name_ << " created" << endl;
 }
 
 Transformer::~Transformer() {
-  cout << "Трансформер " << name_ << " уничтожен" << endl;
+  cout << "Transformer " << name_ << " destroyed" << endl;
 }
 
 string Transformer::GetName() const {
@@ -48,7 +48,7 @@ Alliance* Transformer::GetAlliance() const {
   return alliance_;
 }
 
-//setы
+//setters
 void Transformer::SetName(const std::string& name) {
   name_ = name;
 }
@@ -73,33 +73,33 @@ void Transformer::SetAlliance(Alliance* alliance) {
   alliance_ = alliance;
 }
 
-//virtualы
+//virtual methods
 string Transformer::Transform() {
-  return name_ + " трансформируется";
+  return name_ + " transforms";
 }
 
 string Transformer::Attack() {
   if (weapon_) {
-    return name_ + " атакует " + weapon_->GetName() + 
-           " с уроном " + to_string(weapon_->GetDamage());
+    return name_ + " attacks with " + weapon_->GetName() + 
+           " for " + to_string(weapon_->GetDamage()) + " damage";
   }
-  return name_ + " атакует с силой " + to_string(power_level_);
+  return name_ + " attacks with power " + to_string(power_level_);
 }
 
 string Transformer::GetInfo() const {
-    string info = "Имя: " + name_ + 
-                ", \nРост: " + std::to_string(height_) + "м" +
-                ", \nВес: " + std::to_string(weight_) + "т" +
-                ", \nМощность: " + std::to_string(power_level_);
+    string info = "Name: " + name_ + 
+                ", \nHeight: " + std::to_string(height_) + "m" +
+                ", \nWeight: " + std::to_string(weight_) + "t" +
+                ", \nPower: " + std::to_string(power_level_);
     
     if (weapon_) {
-        info += ", \nОружие: " + weapon_->GetName() + 
-               " (урон: " + std::to_string(weapon_->GetDamage()) + ")";
+        info += ", \nWeapon: " + weapon_->GetName() + 
+               " (damage: " + std::to_string(weapon_->GetDamage()) + ")";
     }
     
     if (alliance_) {
-        info += ", \nАльянс: " + alliance_->GetName() +
-               " (лидер: " + alliance_->GetLeader() + ")";
+        info += ", \nAlliance: " + alliance_->GetName() +
+               " (leader: " + alliance_->GetLeader() + ")";
     }
     
     return info + "\n";

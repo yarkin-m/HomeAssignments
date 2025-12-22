@@ -9,7 +9,7 @@ Decepticon::Decepticon(const string& name, int height, int weight,int power_leve
     Transformer(name, height, weight, power_level, std::move(weapon), alliance),
     flying_form_(flying_form),
     has_wings_(has_wings) {
-        cout << "Десептикон " << name << " создан" << endl;
+        cout << "Decepticon " << name << " created" << endl;
 }
 
 string Decepticon::GetFlyingForm() const {
@@ -29,14 +29,14 @@ void Decepticon::SetHasWings(bool has_wings) {
 }
 
 string Decepticon::Terrorize() {
-  return GetName() + " сеет террор с воздушной формой " + flying_form_;
+  return GetName() + " spreads terror with aerial form " + flying_form_;
 }
 
 string Decepticon::Attack() {
-  string wing_info = has_wings_ ? " с крыльями" : " без крыльев";
-  return GetName() + " атакует " + wing_info;
+  string wing_info = has_wings_ ? " with wings" : " without wings";
+  return GetName() + " attacks" + wing_info;
 }
 
 string Decepticon::Transform() {
-  return GetName() + " трансформируется в " + flying_form_;
+  return GetName() + " transforms into " + flying_form_;
 }

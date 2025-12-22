@@ -14,7 +14,7 @@ Dinobot::Dinobot(const string& name, int height, int weight, int power_level,
         Transformer(name, height, weight, power_level, std::move(weapon), alliance),
         dinosaur_form_(dinosaur_form),
         roar_power_(roar_power) {
-            cout << "Динобот " << name << " создан" << endl;
+            cout << "Dinobot " << name << " created" << endl;
 }
 
 string Dinobot::GetDinosaurForm() const {
@@ -34,10 +34,10 @@ void Dinobot::SetRoarPower(int roar_power) {
 }
 
 string Dinobot::Roar() {
-  return GetName() + " рычит с мощностью " + to_string(roar_power_) +
-         " децибел";
+  return GetName() + " roars with power " + to_string(roar_power_) +
+         " decibels";
 }
 
 string Dinobot::Transform() {
-  return GetName() + " превращается в " + dinosaur_form_;
+  return GetName() + " transforms into " + dinosaur_form_;
 }
