@@ -14,28 +14,28 @@ Decepticon::Decepticon(const string& name, int height, int weight,int power_leve
     Transformer(name, height, weight, power_level, weapon, alliance),
     flying_form_(flying_form),
     has_wings_(has_wings) {
-        cout << "Десептикон " << name << " создан" << endl;
+        cout << "Decepticon " << name << " created" << endl;
 }
 
 Decepticon::Decepticon(const string& name): 
       Transformer(name),  
-      flying_form_("самолет"),
+      flying_form_("airplane"),
       has_wings_(true) {
-    cout << "Десептикон " << GetName() << " создан (простой конструктор)" << endl;
+    cout << "Decepticon " << GetName() << " created (simple constructor)" << endl;
 }
 
 Decepticon::Decepticon(const string& name, const string& flying_form): 
       Transformer(name),  
       flying_form_(flying_form),
       has_wings_(true) {
-    cout << "Десептикон " << GetName() << " создан" << endl;
+    cout << "Decepticon " << GetName() << " created" << endl;
 }
 
 Decepticon::Decepticon(const Decepticon& other): 
       Transformer(other), 
       flying_form_(other.flying_form_),
       has_wings_(other.has_wings_) {
-    cout << "Копия десептикона " << GetName() << " создана" << endl;
+    cout << "Copy of decepticon " << GetName() << " created" << endl;
 }
 
 
@@ -58,41 +58,41 @@ void Decepticon::SetHasWings(bool has_wings) {
 
 
 void Decepticon::SpecialAbility() const {
-    cout << "Decepticon::SpecialAbility() - класс Десептикон" << endl;
-    cout << GetName() << " использует Темную Энергию!" << endl;
+    cout << "Decepticon::SpecialAbility() - Decepticon class" << endl;
+    cout << GetName() << " uses Dark Energon!" << endl;
 }
 
 void Decepticon::ShowInfo() const {
-    cout << "Decepticon::ShowInfo() - класс Десептикон" << endl;
-    cout << GetName() << " - Десептикон. Летающая форма: " << flying_form_ 
-              << ", Крылья: " << (has_wings_ ? "есть" : "нет") << endl;
+    cout << "Decepticon::ShowInfo() - Decepticon class" << endl;
+    cout << GetName() << " - Decepticon. Flying form: " << flying_form_ 
+              << ", Wings: " << (has_wings_ ? "yes" : "no") << endl;
 }
 
 void Decepticon::BattleCry() const {
-    cout << "Decepticon::BattleCry() - класс Десептикон" << endl;
-    cout << GetName() << ": 'Десептиконы, уничтожить автоботов!'" << endl;
+    cout << "Decepticon::BattleCry() - Decepticon class" << endl;
+    cout << GetName() << ": 'Decepticons, destroy the Autobots!'" << endl;
 }
 
 void Decepticon::Transform() const {
-    cout << "Decepticon::Transform() - класс Десептикон" << endl;
-    cout << GetName() << " трансформируется в " << flying_form_ << endl;
+    cout << "Decepticon::Transform() - Decepticon class" << endl;
+    cout << GetName() << " transforms into " << flying_form_ << endl;
 }
 
 void Decepticon::Terrorize() const {
-    cout << "Decepticon::Terrorize() - класс Десептикон" << endl;
-    cout << GetName() << " сеет страх и разрушение!" << endl;
+    cout << "Decepticon::Terrorize() - Decepticon class" << endl;
+    cout << GetName() << " spreads fear and destruction!" << endl;
 }
 
 /*
 string Decepticon::Terrorize() {
-  return GetName() + " сеет террор с воздушной формой " + flying_form_;
+  return GetName() + " spreads terror with aerial form " + flying_form_;
 }
 
 string Decepticon::Attack() {
-  string wing_info = has_wings_ ? " с крыльями" : " без крыльев";
-  return GetName() + " атакует " + wing_info;
+  string wing_info = has_wings_ ? " with wings" : " without wings";
+  return GetName() + " attacks" + wing_info;
 }
 
 string Decepticon::Transform() {
-  return GetName() + " трансформируется в " + flying_form_;
+  return GetName() + " transforms into " + flying_form_;
 }*/

@@ -11,11 +11,11 @@ using namespace std;
 
 Weapon::Weapon(const string& name, int damage):
     name_(name), damage_(damage) {
-    cout << "Оружие " << name_ << " создано" << endl;
+    cout << "Weapon " << name_ << " created" << endl;
 }
 
 Weapon::~Weapon() {
-    cout << "Оружие " << name_ << " уничтожено" << endl;
+    cout << "Weapon " << name_ << " destroyed" << endl;
 }
 
 string Weapon::GetName() const {
@@ -35,6 +35,6 @@ void Weapon::SetDamage(int damage) {
 }
 
 ostream& operator<<(ostream& os, const Weapon& weapon) {
-    os << "Оружие: " << weapon.name_ << " (Урон: " << weapon.damage_ << ")";
+    os << "Weapon: " << weapon.name_ << " (Damage: " << weapon.damage_ << ")";
     return os;
 }

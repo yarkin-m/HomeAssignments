@@ -9,7 +9,7 @@
 #include "Transformer.h"
 #include <string>
 
-// наследник Автобот
+// Autobot
 class Autobot : public Transformer {
  public:
   Autobot(const std::string& name, int height, int weight, int power_level, Weapon* weapon, Alliance* alliance, 

@@ -13,28 +13,28 @@ Autobot::Autobot(const string& name, int height, int weight, int power_level, We
     const string& vehicle_form, int courage_level):
         Transformer(name, height, weight, power_level, weapon, alliance),
         vehicle_form_(vehicle_form), courage_level_(courage_level) {
-            cout << "Автобот " << name << " создан" << endl;
+            cout << "Autobot " << name << " created" << endl;
 }
 
 Autobot::Autobot(const string& name): 
       Transformer(name),  
-      vehicle_form_("автомобиль"),
+      vehicle_form_("car"),
       courage_level_(50) {
-    cout << "Автобот " << GetName() << " создан (простой конструктор)" << endl;
+    cout << "Autobot " << GetName() << " created (simple constructor)" << endl;
 }
 
 Autobot::Autobot(const string& name, const string& vehicle_form)
     : Transformer(name, 150), 
       vehicle_form_(vehicle_form),
       courage_level_(75) {
-    cout << "Автобот " << GetName() << " создан (форма: " << vehicle_form_ << ")" << endl;
+    cout << "Autobot " << GetName() << " created (form: " << vehicle_form_ << ")" << endl;
 }
 
 Autobot::Autobot(const Autobot& other): 
       Transformer(other), 
       vehicle_form_(other.vehicle_form_),
       courage_level_(other.courage_level_) {
-    cout << "Копия автобота " << GetName() << " создана" << endl;
+    cout << "Copy of autobot " << GetName() << " created" << endl;
 }
 
 string Autobot::GetVehicleForm() const {
@@ -45,7 +45,7 @@ int Autobot::GetCourageLevel() const {
   return courage_level_;
 }
 
-//setы
+//setters
 void Autobot::SetVehicleForm(const string& vehicle_form) {
   vehicle_form_ = vehicle_form;
 }
@@ -54,38 +54,38 @@ void Autobot::SetCourageLevel(int courage_level) {
   courage_level_ = courage_level;
 }
 
-//virtualы
+//virtual methods
 void Autobot::SpecialAbility() const {
-    std::cout << "Autobot::SpecialAbility() - класс Автобот" << endl;
-    std::cout << GetName() << " использует Матрицу Лидерства!" << endl;
+    std::cout << "Autobot::SpecialAbility() - Autobot class" << endl;
+    std::cout << GetName() << " uses Matrix of Leadership!" << endl;
 }
 
 void Autobot::ShowInfo() const {
-    cout << "Autobot::ShowInfo() - класс Автобот" << endl;
-    cout << GetName() << " - Автобот. Форма: " << vehicle_form_ << ", Храбрость: " << courage_level_ << endl;
+    cout << "Autobot::ShowInfo() - Autobot class" << endl;
+    cout << GetName() << " - Autobot. Form: " << vehicle_form_ << ", Courage: " << courage_level_ << endl;
 }
 
 void Autobot::BattleCry() const {
-    cout << "Autobot::BattleCry() - класс Автобот" << endl;
-    cout << GetName() << ": 'Автоботы, в атаку! Во имя свободы!'" << endl;
+    cout << "Autobot::BattleCry() - Autobot class" << endl;
+    cout << GetName() << ": 'Autobots, attack! For freedom!'" << endl;
 }
 
 void Autobot::Transform() const {
-    cout << "Autobot::Transform() - класс Автобот" << endl;
-    cout << GetName() << " трансформируется в " << vehicle_form_ << endl;
+    cout << "Autobot::Transform() - Autobot class" << endl;
+    cout << GetName() << " transforms into " << vehicle_form_ << endl;
 }
 
 void Autobot::ProtectHumans() const {
-    cout << "Autobot::ProtectHumans() - класс Автобот" << endl;
-    cout << GetName() << " защищает людей с храбростью " << courage_level_ << endl;
+    cout << "Autobot::ProtectHumans() - Autobot class" << endl;
+    cout << GetName() << " protects humans with courage " << courage_level_ << endl;
 }
 
-//доп.
+//additional methods
 /*
 string Autobot::ProtectHumans() {
-  return GetName() + " защищает людей с уровнем храбрости " + to_string(courage_level_);
+  return GetName() + " protects people with courage level " + to_string(courage_level_);
 }
 
 string Autobot::Transform() {
-  return GetName() + " трансформируется в " + vehicle_form_;
+  return GetName() + " transforms into " + vehicle_form_;
 }*/

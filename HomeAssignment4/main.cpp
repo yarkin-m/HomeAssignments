@@ -15,136 +15,136 @@
 using namespace std;
 /*
 void TestConstructorOverloading() {
-    cout << "Тест перегрузки" << endl;
+    cout << "Constructor overloading test" << endl;
     
-    cout << "\n1. КОНСТРУКТОРЫ TRANSFORMER:" << endl;
-    cout << "1.1 Простой конструктор (только имя):" << endl;
-    Transformer t1("Простой трансформер");
+    cout << "\n1. TRANSFORMER CONSTRUCTORS:" << endl;
+    cout << "1.1 Simple constructor (name only):" << endl;
+    Transformer t1("Simple Transformer");
     cout << "   " << t1 << endl;
 
-    cout << "\n1.2 Конструктор с именем и мощностью:" << endl;
-    Transformer t2("Мощный", 500);
+    cout << "\n1.2 Constructor with name and power:" << endl;
+    Transformer t2("Powerful", 500);
     cout << "   " << t2 << endl;
 
-    cout << "\n1.3 Конструктор копирования:" << endl;
+    cout << "\n1.3 Copy constructor:" << endl;
     Transformer t3 = t2;  
-    cout << "   Оригинал: " << t2.GetName() << endl;
-    cout << "   Копия: " << t3 << endl;
+    cout << "   Original: " << t2.GetName() << endl;
+    cout << "   Copy: " << t3 << endl;
     
-    cout << "\n1.4 Проверка Deep Copy (изменяем оригинал):" << endl; // показать что это не swallow
+    cout << "\n1.4 Deep Copy check (modify original):" << endl;
     t2.SetPowerLevel(999);
-    cout << "   Оригинал мощность: " << t2.GetPowerLevel() << endl;
-    cout << "   Копия мощность: " << t3.GetPowerLevel() << " (не изменилась!)" << endl;
+    cout << "   Original power: " << t2.GetPowerLevel() << endl;
+    cout << "   Copy power: " << t3.GetPowerLevel() << " (not changed!)" << endl;
     
 
-    //АВТОБОТЫ
-    cout << "\n\n2. КОНСТРУКТОРЫ AUTOBOT:" << endl;
+    // AUTOBOTS
+    cout << "\n\n2. AUTOBOT CONSTRUCTORS:" << endl;
     
-    cout << "2.1 Простой конструктор:" << endl;
-    Autobot a1("Бамблби");
+    cout << "2.1 Simple constructor:" << endl;
+    Autobot a1("Bumblebee");
     cout << "   " << a1 << endl;
-    cout << "   Форма: " << a1.GetVehicleForm() << endl;
-    cout << "   Храбрость: " << a1.GetCourageLevel() << endl;
+    cout << "   Form: " << a1.GetVehicleForm() << endl;
+    cout << "   Courage: " << a1.GetCourageLevel() << endl;
     
-    cout << "\n2.2 Конструктор с именем и формой:" << endl;
-    Autobot a2("Джаз", "спорткар");
+    cout << "\n2.2 Constructor with name and form:" << endl;
+    Autobot a2("Jazz", "sports car");
     cout << "   " << a2 << endl;
-    cout << "   Форма: " << a2.GetVehicleForm() << endl;
+    cout << "   Form: " << a2.GetVehicleForm() << endl;
     
-    cout << "\n2.3 Конструктор копирования:" << endl;
+    cout << "\n2.3 Copy constructor:" << endl;
     Autobot a3 = a2;
-    cout << "   Копия: " << a3 << endl;
-    cout << "   Форма копии: " << a3.GetVehicleForm() << endl;
+    cout << "   Copy: " << a3 << endl;
+    cout << "   Copy form: " << a3.GetVehicleForm() << endl;
     
 
 
-    //ДЕСЕПТИКОНЫ
-    cout << "\n\n3. КОНСТРУКТОРЫ DECEPTICON:" << endl;
+    // DECEPTICONS
+    cout << "\n\n3. DECEPTICON CONSTRUCTORS:" << endl;
     
-    cout << "3.1 Простой конструктор:" << endl;
-    Decepticon d1("Старскрим");
+    cout << "3.1 Simple constructor:" << endl;
+    Decepticon d1("Starscream");
     cout << "   " << d1 << endl;
-    cout << "   Форма: " << d1.GetFlyingForm() << endl;
-    cout << "   Крылья: " << (d1.GetHasWings() ? "есть" : "нет") << endl;
+    cout << "   Form: " << d1.GetFlyingForm() << endl;
+    cout << "   Wings: " << (d1.GetHasWings() ? "yes" : "no") << endl;
     
-    cout << "\n3.2 Конструктор с именем и формой:" << endl;
-    Decepticon d2("Саундвейв", "кассетник");
+    cout << "\n3.2 Constructor with name and form:" << endl;
+    Decepticon d2("Soundwave", "cassette player");
     cout << "   " << d2 << endl;
-    cout << "   Форма: " << d2.GetFlyingForm() << endl;
+    cout << "   Form: " << d2.GetFlyingForm() << endl;
     
-    cout << "\n3.3 Конструктор копирования:" << endl;
+    cout << "\n3.3 Copy constructor:" << endl;
     Decepticon d3 = d1;
-    cout << "   Копия: " << d3 << endl;
-    cout << "   Форма копии: " << d3.GetFlyingForm() << endl;
+    cout << "   Copy: " << d3 << endl;
+    cout << "   Copy form: " << d3.GetFlyingForm() << endl;
     
 
 
-    //ДИНОБОТЫ
-    cout << "\n\n4. КОНСТРУКТОРЫ DINOBOT:" << endl;
+    // DINOBOTS
+    cout << "\n\n4. DINOBOT CONSTRUCTORS:" << endl;
     cout << string(30, '-') << endl;
     
-    cout << "4.1 Простой конструктор:" << endl;
-    Dinobot dn1("Слэг");
+    cout << "4.1 Simple constructor:" << endl;
+    Dinobot dn1("Slag");
     cout << "   " << dn1 << endl;
-    cout << "   Форма: " << dn1.GetDinosaurForm() << endl;
-    cout << "   Сила рыка: " << dn1.GetRoarPower() << endl;
+    cout << "   Form: " << dn1.GetDinosaurForm() << endl;
+    cout << "   Roar power: " << dn1.GetRoarPower() << endl;
     
-    cout << "\n4.2 Конструктор с именем и формой:" << endl;
-    Dinobot dn2("Снарл", "саблезуб");
+    cout << "\n4.2 Constructor with name and form:" << endl;
+    Dinobot dn2("Snarl", "sabertooth");
     cout << "   " << dn2 << endl;
-    cout << "   Форма: " << dn2.GetDinosaurForm() << endl;
+    cout << "   Form: " << dn2.GetDinosaurForm() << endl;
     
-    cout << "\n4.3 Конструктор копирования:" << endl;
+    cout << "\n4.3 Copy constructor:" << endl;
     Dinobot dn3 = dn1;
-    cout << "   Копия: " << dn3 << endl;
-    cout << "   Форма копии: " << dn3.GetDinosaurForm() << endl;
+    cout << "   Copy: " << dn3 << endl;
+    cout << "   Copy form: " << dn3.GetDinosaurForm() << endl;
     
 
-    //Разные конструкторы
-    cout << "\n\n5. МАССИВ ОБЪЕКТОВ (разные конструкторы):" << endl;
+    // Different constructors
+    cout << "\n\n5. ARRAY OF OBJECTS (different constructors):" << endl;
     
     Transformer* army[6];
     
-    army[0] = new Transformer("Базовый1");
-    army[1] = new Transformer("Базовый2", 350);
+    army[0] = new Transformer("Basic1");
+    army[1] = new Transformer("Basic2", 350);
     
-    army[2] = new Autobot("Рэтчет");
-    army[3] = new Autobot("Айронхайд", "внедорожник");
+    army[2] = new Autobot("Ratchet");
+    army[3] = new Autobot("Ironhide", "SUV");
     
-    army[4] = new Decepticon("Шоквейв");
-    army[5] = new Dinobot("Свип");
+    army[4] = new Decepticon("Shockwave");
+    army[5] = new Dinobot("Swoop");
     
-    cout << "\nИнформация о армии:" << endl;
+    cout << "\nArmy information:" << endl;
     for (int i = 0; i < 6; i++) {
         cout << "  " << i+1 << ". " << *army[i] << endl;
     }
     
-    cout << "\nОчищаем память..." << endl;
+    cout << "\nCleaning memory..." << endl;
     for (int i = 0; i < 6; i++) {
         delete army[i];
     }
     
-    //Сложное копирование
-    cout << "\n\n6. СЛОЖНОЕ КОПИРОВАНИЕ (с оружием и альянсами):" << endl;
+    // Complex copying
+    cout << "\n\n6. COMPLEX COPY (with weapons and alliances):" << endl;
 
-    Alliance* testAlliance = new Alliance("Тестовый", "Лидер");
-    Weapon* testWeapon = new Weapon("Тестовое оружие", 75);
+    Alliance* testAlliance = new Alliance("Test", "Leader");
+    Weapon* testWeapon = new Weapon("Test weapon", 75);
     
-    Autobot original("Оригинал", 12, 6, 180, testWeapon, testAlliance, "грузовик", 85);
-    cout << "Создан оригинал: " << original << endl;
-    cout << "Оружие оригинала: " << original.GetWeapon()->GetName() << endl;
+    Autobot original("Original", 12, 6, 180, testWeapon, testAlliance, "truck", 85);
+    cout << "Created original: " << original << endl;
+    cout << "Original weapon: " << original.GetWeapon()->GetName() << endl;
     
     Autobot copy = original;
-    cout << "Создана копия: " << copy << endl;
+    cout << "Created copy: " << copy << endl;
     
-    cout << "\nПроверка Deep Copy оружия:" << endl;
-    cout << "Адрес оружия оригинала: " << original.GetWeapon() << endl;
-    cout << "Адрес оружия копии: " << copy.GetWeapon() << endl;
+    cout << "\nDeep Copy weapon check:" << endl;
+    cout << "Original weapon address: " << original.GetWeapon() << endl;
+    cout << "Copy weapon address: " << copy.GetWeapon() << endl;
     
     copy.GetWeapon()->SetDamage(100);
-    cout << "\nИзменяем урон оружия копии на 100..." << endl;
-    cout << "Урон оружия оригинала: " << original.GetWeapon()->GetDamage() << " (не изменился!)" << endl;
-    cout << "Урон оружия копии: " << copy.GetWeapon()->GetDamage() << endl;
+    cout << "\nChanging copy weapon damage to 100..." << endl;
+    cout << "Original weapon damage: " << original.GetWeapon()->GetDamage() << " (not changed!)" << endl;
+    cout << "Copy weapon damage: " << copy.GetWeapon()->GetDamage() << endl;
     
     delete testAlliance;
     delete testWeapon;
@@ -152,15 +152,15 @@ void TestConstructorOverloading() {
 */
 void TestVirtualMethods() {
 
-    cout << "ТЕСТ ВИРТУАЛЬНЫХ МЕТОДОВ" << endl;
+    cout << "VIRTUAL METHODS TEST" << endl;
     
-    cout << "\n1. ПРЯМОЙ ВЫЗОВ МЕТОДОВ:" << endl;
+    cout << "\n1. DIRECT METHOD CALLS:" << endl;
     
-    Autobot optimus("Оптимус Прайм", "грузовик");
-    Decepticon megatron("Мегатрон", "самолет");
-    Dinobot grimlock("Гримлок", "тираннозавр");
+    Autobot optimus("Optimus Prime", "truck");
+    Decepticon megatron("Megatron", "airplane");
+    Dinobot grimlock("Grimlock", "tyrannosaurus");
     
-    cout << "\nА) Autobot методы:" << endl;
+    cout << "\nA) Autobot methods:" << endl;
     optimus.ShowInfo();
     optimus.BattleCry();
     optimus.Transform();
@@ -168,7 +168,7 @@ void TestVirtualMethods() {
     optimus.Repair();          
     optimus.ProtectHumans();   
     
-    cout << "\nБ) Decepticon методы:" << endl;
+    cout << "\nB) Decepticon methods:" << endl;
     megatron.ShowInfo();
     megatron.BattleCry();
     megatron.Transform();
@@ -176,7 +176,7 @@ void TestVirtualMethods() {
     megatron.Repair();
     megatron.Terrorize();
     
-    cout << "\nВ) Dinobot методы:" << endl;
+    cout << "\nC) Dinobot methods:" << endl;
     grimlock.ShowInfo();
     grimlock.BattleCry();
     grimlock.Transform();
@@ -184,7 +184,7 @@ void TestVirtualMethods() {
     grimlock.Repair();
     grimlock.Roar();
     
-    cout << "\n\n2. ВЫЗОВ ЧЕРЕЗ УКАЗАТЕЛЬ НА БАЗОВЫЙ КЛАСС:" << endl;
+    cout << "\n\n2. CALL THROUGH BASE CLASS POINTER:" << endl;
     
     Transformer* army[3];
     army[0] = &optimus;
@@ -192,7 +192,7 @@ void TestVirtualMethods() {
     army[2] = &grimlock;
     
     for (int i = 0; i < 3; i++) {
-        cout << "\nБоец #" << (i + 1) << ":" << endl;
+        cout << "\nFighter #" << (i + 1) << ":" << endl;
         army[i]->ShowInfo();       
         army[i]->BattleCry();      
         army[i]->Transform();      
@@ -200,26 +200,26 @@ void TestVirtualMethods() {
         army[i]->Repair();         
     }
     
-    cout << "\n\n3. ВЕКТОР ИЗ 9 ОБЪЕКТОВ (3 каждого типа):" << endl;
+    cout << "\n\n3. VECTOR OF 9 OBJECTS (3 of each type):" << endl;
     
     vector<Transformer*> bigArmy;
     
 
-    bigArmy.push_back(new Autobot("Оптимус", "грузовик"));
-    bigArmy.push_back(new Autobot("Бамблби", "машина"));
-    bigArmy.push_back(new Autobot("Джаз", "спорткар"));
+    bigArmy.push_back(new Autobot("Optimus", "truck"));
+    bigArmy.push_back(new Autobot("Bumblebee", "car"));
+    bigArmy.push_back(new Autobot("Jazz", "sports car"));
     
-    bigArmy.push_back(new Decepticon("Мегатрон", "пистолет"));
-    bigArmy.push_back(new Decepticon("Старскрим", "истребитель"));
-    bigArmy.push_back(new Decepticon("Саундвейв", "кассетник"));
+    bigArmy.push_back(new Decepticon("Megatron", "gun"));
+    bigArmy.push_back(new Decepticon("Starscream", "fighter jet"));
+    bigArmy.push_back(new Decepticon("Soundwave", "cassette player"));
     
-    bigArmy.push_back(new Dinobot("Гримлок", "тираннозавр"));
-    bigArmy.push_back(new Dinobot("Слэг", "трицератопс"));
-    bigArmy.push_back(new Dinobot("Снарл", "саблезуб"));
+    bigArmy.push_back(new Dinobot("Grimlock", "tyrannosaurus"));
+    bigArmy.push_back(new Dinobot("Slag", "triceratops"));
+    bigArmy.push_back(new Dinobot("Snarl", "sabertooth"));
     
 
     for (size_t i = 0; i < bigArmy.size(); i++) {
-        cout << "\n--- Боец #" << (i + 1) << " ---" << endl;
+        cout << "\n--- Fighter #" << (i + 1) << " ---" << endl;
         bigArmy[i]->ShowInfo();
         bigArmy[i]->BattleCry();
         bigArmy[i]->SpecialAbility();
@@ -236,62 +236,62 @@ void TestVirtualMethods() {
 
 int main() {
 
-  Alliance* autobotAlliance = new Alliance("Автоботы", "Оптимус Прайм");
-  Alliance* decepticonAlliance = new Alliance("Десептиконы", "Мегатрон");
+  Alliance* autobotAlliance = new Alliance("Autobots", "Optimus Prime");
+  Alliance* decepticonAlliance = new Alliance("Decepticons", "Megatron");
   
-  Weapon* axe = new Weapon("Топор", 80);
-  Weapon* cannon = new Weapon("Пушка", 120);
-  Weapon* sword = new Weapon("Меч", 90);
+  Weapon* axe = new Weapon("Axe", 80);
+  Weapon* cannon = new Weapon("Cannon", 120);
+  Weapon* sword = new Weapon("Sword", 90);
   
-  Autobot* optimus = new Autobot("Оптимус Прайм", 15, 8, 200, axe, autobotAlliance, "грузовик", 95);
+  Autobot* optimus = new Autobot("Optimus Prime", 15, 8, 200, axe, autobotAlliance, "truck", 95);
   
-  Decepticon* megatron = new Decepticon("Мегатрон", 14, 9, 180, cannon, decepticonAlliance, "самолет", true);
+  Decepticon* megatron = new Decepticon("Megatron", 14, 9, 180, cannon, decepticonAlliance, "airplane", true);
   
-  Dinobot* grimlock = new Dinobot("Гримлок", 12, 10, 220, sword, autobotAlliance, "тираннозавр", 150);
+  Dinobot* grimlock = new Dinobot("Grimlock", 12, 10, 220, sword, autobotAlliance, "tyrannosaurus", 150);
   
-  cout << "\nТЕСТИРОВАНИЕ" << endl;
+  cout << "\nTESTING" << endl;
   /*
-  cout << "\n1. Информация о трансформерах:" << endl;
+  cout << "\n1. Transformer information:" << endl;
   cout << optimus->GetInfo() << endl;
   cout << megatron->GetInfo() << endl;
   cout << grimlock->GetInfo() << endl;
   
-  cout << "\n2. Трансформации:" << endl;
+  cout << "\n2. Transformations:" << endl;
   cout << optimus->Transform() << endl;
   cout << megatron->Transform() << endl;
   cout << grimlock->Transform() << endl;
   
-  cout << "\n3. Атаки:" << endl;
+  cout << "\n3. Attacks:" << endl;
   cout << optimus->Attack() << endl;
   cout << megatron->Attack() << endl;
   cout << grimlock->Attack() << endl;
   
-  cout << "\n4. Специальные способности:" << endl;
+  cout << "\n4. Special abilities:" << endl;
   cout << optimus->ProtectHumans() << endl;
   cout << megatron->Terrorize() << endl;
   cout << grimlock->Roar() << endl;
   */
-  cout << "\nТесты 1-4 для задания 3" << endl;
-  cout << "\n5. Тест get/set методов:" << endl;
+  cout << "\nTests 1-4 for assignment 3" << endl;
+  cout << "\n5. Test get/set methods:" << endl;
   optimus->SetPowerLevel(250);
-  cout << "Новая мощность Оптимуса: " << optimus->GetPowerLevel() << endl;
+  cout << "New power level of Optimus: " << optimus->GetPowerLevel() << endl;
   
-  cout << "\n6. Тест композиции и ассоциации:" << endl;
-  cout << "Оружие Оптимуса: " << optimus->GetWeapon()->GetName() 
-            << " (урон: " << optimus->GetWeapon()->GetDamage() << ")" << endl;
-  cout << "Альянс Мегатрона: " << megatron->GetAlliance()->GetName() 
-            << " (лидер: " << megatron->GetAlliance()->GetLeader() << ")" << endl;
+  cout << "\n6. Test composition and association:" << endl;
+  cout << "Optimus's weapon: " << optimus->GetWeapon()->GetName() 
+            << " (damage: " << optimus->GetWeapon()->GetDamage() << ")" << endl;
+  cout << "Megatron's alliance: " << megatron->GetAlliance()->GetName() 
+            << " (leader: " << megatron->GetAlliance()->GetLeader() << ")" << endl;
   
-  cout << "\nТест оператора <<" << endl;
-  cout << "Альянс автоботов: " <<*autobotAlliance << endl;      
-  cout << "Оружие: " << *sword << endl;         
-  cout << "Оптимус прайм: "<< *optimus << endl;
+  cout << "\nTest operator <<" << endl;
+  cout << "Autobot alliance: " << *autobotAlliance << endl;      
+  cout << "Weapon: " << *sword << endl;         
+  cout << "Optimus Prime: "<< *optimus << endl;
   
   //TestConstructorOverloading();
 
   TestVirtualMethods();
   
-  cout << "\nУНИЧТОЖЕНИЕ ОБЪЕКТОВ" << endl;
+  cout << "\nDESTROYING OBJECTS" << endl;
   delete optimus;
   delete megatron;
   delete grimlock;

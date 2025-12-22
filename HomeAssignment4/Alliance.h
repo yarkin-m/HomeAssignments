@@ -8,7 +8,7 @@
 
 #include <string>
 
-// ассоциации
+// associations
 class Alliance {
  public:
   Alliance(const std::string& name, const std::string& leader);

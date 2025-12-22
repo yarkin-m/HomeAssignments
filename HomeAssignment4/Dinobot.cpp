@@ -14,28 +14,28 @@ Dinobot::Dinobot(const string& name, int height, int weight, int power_level, We
         Transformer(name, height, weight, power_level, weapon, alliance),
         dinosaur_form_(dinosaur_form),
         roar_power_(roar_power) {
-            cout << "Динобот " << name << " создан" << endl;
+            cout << "Dinobot " << name << " created" << endl;
 }
 
 Dinobot::Dinobot(const string& name): 
       Transformer(name),  
-      dinosaur_form_("тирекс"),
+      dinosaur_form_("T-rex"),
       roar_power_(70) {
-    cout << "Динобот " << GetName() << " создан (простой конструктор)" << endl;
+    cout << "Dinobot " << GetName() << " created (simple constructor)" << endl;
 }
 
 Dinobot::Dinobot(const string& name, const string& dinosaur_form): 
       Transformer(name),  
       dinosaur_form_(dinosaur_form),
       roar_power_(70) {
-    cout << "Динобот " << GetName() << " создан" << endl;
+    cout << "Dinobot " << GetName() << " created" << endl;
 }
 
 Dinobot::Dinobot(const Dinobot& other): 
       Transformer(other),  
       dinosaur_form_(other.dinosaur_form_),
       roar_power_(other.roar_power_) {
-    cout << "Копия динобота " << GetName() << " создана" << endl;
+    cout << "Copy of dinobot " << GetName() << " created" << endl;
 }
 
 
@@ -58,37 +58,37 @@ void Dinobot::SetRoarPower(int roar_power) {
 
 
 void Dinobot::SpecialAbility() const {
-    cout << "Dinobot::SpecialAbility() - класс Динобот" << endl;
-    cout << GetName() << " использует Древнюю Силу Динозавров!" << endl;
+    cout << "Dinobot::SpecialAbility() - Dinobot class" << endl;
+    cout << GetName() << " uses Ancient Dinosaur Power!" << endl;
 }
 
 void Dinobot::ShowInfo() const {
-    cout << "Dinobot::ShowInfo() - класс Динобот" << endl;
-    cout << GetName() << " - Динобот. Форма динозавра: " << dinosaur_form_ 
-              << ", Сила рыка: " << roar_power_ << endl;
+    cout << "Dinobot::ShowInfo() - Dinobot class" << endl;
+    cout << GetName() << " - Dinobot. Dinosaur form: " << dinosaur_form_ 
+              << ", Roar power: " << roar_power_ << endl;
 }
 
 void Dinobot::BattleCry() const {
-    cout << "Dinobot::BattleCry() - класс Динобот" << endl;
-    cout << GetName() << ": 'Р-Р-Р-Р-Р! Я король динозавров!'" << endl;
+    cout << "Dinobot::BattleCry() - Dinobot class" << endl;
+    cout << GetName() << ": 'R-R-R-R-R! I am the king of dinosaurs!'" << endl;
 }
 
 void Dinobot::Transform() const {
-    cout << "Dinobot::Transform() - класс Динобот" << endl;
-    cout << GetName() << " превращается в " << dinosaur_form_ << endl;
+    cout << "Dinobot::Transform() - Dinobot class" << endl;
+    cout << GetName() << " transforms into " << dinosaur_form_ << endl;
 }
 
 void Dinobot::Roar() const {
-    cout << "Dinobot::Roar() - класс Динобот" << endl;
-    cout << GetName() << " рычит с силой " << roar_power_ << " децибел!" << endl;
+    cout << "Dinobot::Roar() - Dinobot class" << endl;
+    cout << GetName() << " roars with power " << roar_power_ << " decibels!" << endl;
 }
 
 /*
 string Dinobot::Roar() {
-  return GetName() + " рычит с мощностью " + to_string(roar_power_) +
-         " децибел";
+  return GetName() + " roars with power " + to_string(roar_power_) +
+         " decibels";
 }
 
 string Dinobot::Transform() {
-  return GetName() + " превращается в " + dinosaur_form_;
+  return GetName() + " transforms into " + dinosaur_form_;
 }*/

@@ -19,50 +19,50 @@ using namespace std;
 
 
 TEST(Assignment4Test, OperatorOutput) {
-    Alliance alliance("Автоботы", "Оптимус Прайм");
-    Weapon weapon("Энерго-меч", 90);
+    Alliance alliance("Autobots", "Optimus Prime");
+    Weapon weapon("Energy sword", 90);
     
     stringstream ss;
     
     ss << alliance;
     string allianceOutput = ss.str();
-    EXPECT_NE(allianceOutput.find("Автоботы"), string::npos);
-    EXPECT_NE(allianceOutput.find("Оптимус Прайм"), string::npos);
+    EXPECT_NE(allianceOutput.find("Autobots"), string::npos);
+    EXPECT_NE(allianceOutput.find("Optimus Prime"), string::npos);
     
     ss.str("");
     
     ss << weapon;
     string weaponOutput = ss.str();
-    EXPECT_NE(weaponOutput.find("Энерго-меч"), string::npos);
+    EXPECT_NE(weaponOutput.find("Energy sword"), string::npos);
     EXPECT_NE(weaponOutput.find("90"), string::npos);
 }
 
 TEST(Assignment4Test, ConstructorOverloading) {
     
-    Autobot a1("Бамблби");
-    EXPECT_EQ(a1.GetName(), "Бамблби");
-    EXPECT_EQ(a1.GetVehicleForm(), "автомобиль"); 
+    Autobot a1("Bumblebee");
+    EXPECT_EQ(a1.GetName(), "Bumblebee");
+    EXPECT_EQ(a1.GetVehicleForm(), "car"); 
     
-    Autobot a2("Джаз", "спорткар");
-    EXPECT_EQ(a2.GetName(), "Джаз");
-    EXPECT_EQ(a2.GetVehicleForm(), "спорткар");
+    Autobot a2("Jazz", "sports car");
+    EXPECT_EQ(a2.GetName(), "Jazz");
+    EXPECT_EQ(a2.GetVehicleForm(), "sports car");
     
     Autobot a3 = a2;
-    EXPECT_EQ(a3.GetName(), a2.GetName() + " (копия)");
-    EXPECT_EQ(a3.GetVehicleForm(), "спорткар");
+    EXPECT_EQ(a3.GetName(), a2.GetName() + " (copy)");
+    EXPECT_EQ(a3.GetVehicleForm(), "sports car");
 }
 
 TEST(Assignment4Test, VirtualMethodsDirectCall) {
-    Autobot autobot("Оптимус", 15, 8, 200, nullptr, nullptr, "грузовик", 95);
-    Decepticon decepticon("Мегатрон", 14, 9, 180, nullptr, nullptr, "самолет", true);
-    Dinobot dinobot("Гримлок", 12, 10, 220, nullptr, nullptr, "тираннозавр", 150);
+    Autobot autobot("Optimus", 15, 8, 200, nullptr, nullptr, "truck", 95);
+    Decepticon decepticon("Megatron", 14, 9, 180, nullptr, nullptr, "airplane", true);
+    Dinobot dinobot("Grimlock", 12, 10, 220, nullptr, nullptr, "tyrannosaurus", 150);
     
     testing::internal::CaptureStdout();
     
     autobot.ShowInfo();
     string output1 = testing::internal::GetCapturedStdout();
     EXPECT_NE(output1.find("Autobot::ShowInfo()"), string::npos);
-    EXPECT_NE(output1.find("Оптимус"), string::npos);
+    EXPECT_NE(output1.find("Optimus"), string::npos);
     
     testing::internal::CaptureStdout();
     decepticon.ShowInfo();
@@ -77,9 +77,9 @@ TEST(Assignment4Test, VirtualMethodsDirectCall) {
 
 TEST(Assignment4Test, PureVirtualMethod) {
     
-    Autobot autobot("Тест", 10, 5, 100, nullptr, nullptr, "форма", 50);
-    Decepticon decepticon("Тест", 10, 5, 100, nullptr, nullptr, "форма", true);
-    Dinobot dinobot("Тест", 10, 5, 100, nullptr, nullptr, "форма", 80);
+    Autobot autobot("Test", 10, 5, 100, nullptr, nullptr, "form", 50);
+    Decepticon decepticon("Test", 10, 5, 100, nullptr, nullptr, "form", true);
+    Dinobot dinobot("Test", 10, 5, 100, nullptr, nullptr, "form", 80);
     
 
     testing::internal::CaptureStdout();
@@ -99,9 +99,9 @@ TEST(Assignment4Test, PureVirtualMethod) {
 }
 
 TEST(Assignment4Test, VirtualMethodsThroughPointers) {
-    Autobot autobot("Оптимус", "грузовик");
-    Decepticon decepticon("Мегатрон", "самолет");
-    Dinobot dinobot("Гримлок", "тираннозавр");
+    Autobot autobot("Optimus", "truck");
+    Decepticon decepticon("Megatron", "airplane");
+    Dinobot dinobot("Grimlock", "tyrannosaurus");
     
     Transformer* army[3] = {&autobot, &decepticon, &dinobot};
     
@@ -125,17 +125,17 @@ TEST(Assignment4Test, VirtualMethodsThroughPointers) {
 TEST(Assignment4Test, VectorOfNineObjects) {
     vector<Transformer*> bigArmy;
     
-    bigArmy.push_back(new Autobot("A1", "машина"));
-    bigArmy.push_back(new Autobot("A2", "грузовик"));
-    bigArmy.push_back(new Autobot("A3", "спорткар"));
+    bigArmy.push_back(new Autobot("A1", "car"));
+    bigArmy.push_back(new Autobot("A2", "truck"));
+    bigArmy.push_back(new Autobot("A3", "sports car"));
     
-    bigArmy.push_back(new Decepticon("D1", "самолет"));
-    bigArmy.push_back(new Decepticon("D2", "танк"));
-    bigArmy.push_back(new Decepticon("D3", "вертолет"));
+    bigArmy.push_back(new Decepticon("D1", "airplane"));
+    bigArmy.push_back(new Decepticon("D2", "tank"));
+    bigArmy.push_back(new Decepticon("D3", "helicopter"));
     
-    bigArmy.push_back(new Dinobot("DN1", "тираннозавр"));
-    bigArmy.push_back(new Dinobot("DN2", "трицератопс"));
-    bigArmy.push_back(new Dinobot("DN3", "саблезуб"));
+    bigArmy.push_back(new Dinobot("DN1", "tyrannosaurus"));
+    bigArmy.push_back(new Dinobot("DN2", "triceratops"));
+    bigArmy.push_back(new Dinobot("DN3", "sabertooth"));
     
     EXPECT_EQ(bigArmy.size(), 9);
     
@@ -155,48 +155,48 @@ TEST(Assignment4Test, VectorOfNineObjects) {
 
 TEST(Assignment4Test, AllMethodsFromAssignment3) {
     
-    Alliance* alliance = new Alliance("Автоботы", "Оптимус");
-    Weapon* weapon = new Weapon("Меч", 80);
+    Alliance* alliance = new Alliance("Autobots", "Optimus");
+    Weapon* weapon = new Weapon("Sword", 80);
     
-    Autobot autobot("Тест", 10, 5, 100, weapon, alliance, "форма", 70);
+    Autobot autobot("Test", 10, 5, 100, weapon, alliance, "form", 70);
     
-    EXPECT_EQ(autobot.GetName(), "Тест");
+    EXPECT_EQ(autobot.GetName(), "Test");
     EXPECT_EQ(autobot.GetHeight(), 10);
     EXPECT_EQ(autobot.GetWeight(), 5);
     EXPECT_EQ(autobot.GetPowerLevel(), 100);
-    EXPECT_EQ(autobot.GetVehicleForm(), "форма");
+    EXPECT_EQ(autobot.GetVehicleForm(), "form");
     EXPECT_EQ(autobot.GetCourageLevel(), 70);
     
     autobot.SetPowerLevel(150);
     EXPECT_EQ(autobot.GetPowerLevel(), 150);
     
-    autobot.SetVehicleForm("новая форма");
-    EXPECT_EQ(autobot.GetVehicleForm(), "новая форма");
+    autobot.SetVehicleForm("new form");
+    EXPECT_EQ(autobot.GetVehicleForm(), "new form");
     /*
     string protectResult = autobot.ProtectHumans();
-    EXPECT_NE(protectResult.find("защищает"), string::npos);
+    EXPECT_NE(protectResult.find("protects"), string::npos);
     */
-    EXPECT_EQ(autobot.GetWeapon()->GetName(), "Меч");
-    EXPECT_EQ(autobot.GetAlliance()->GetName(), "Автоботы");
+    EXPECT_EQ(autobot.GetWeapon()->GetName(), "Sword");
+    EXPECT_EQ(autobot.GetAlliance()->GetName(), "Autobots");
     
     delete alliance;
     delete weapon;
 }
 
 TEST(Assignment4Test, DeepCopy) {
-    Weapon* originalWeapon = new Weapon("Оригинальное оружие", 100);
-    Alliance* alliance = new Alliance("Альянс", "Лидер");
+    Weapon* originalWeapon = new Weapon("Original weapon", 100);
+    Alliance* alliance = new Alliance("Alliance", "Leader");
     
-    Autobot original("Оригинал", 10, 5, 200, originalWeapon, alliance, "форма", 80);
+    Autobot original("Original", 10, 5, 200, originalWeapon, alliance, "form", 80);
     
     Autobot copy = original;
     
-    EXPECT_EQ(copy.GetName(), original.GetName() + " (копия)");
-    EXPECT_EQ(copy.GetVehicleForm(), "форма");
+    EXPECT_EQ(copy.GetName(), original.GetName() + " (copy)");
+    EXPECT_EQ(copy.GetVehicleForm(), "form");
     EXPECT_EQ(copy.GetCourageLevel(), 80);
     
     EXPECT_NE(copy.GetWeapon(), original.GetWeapon());
-    EXPECT_EQ(copy.GetWeapon()->GetName(), "Оригинальное оружие");
+    EXPECT_EQ(copy.GetWeapon()->GetName(), "Original weapon");
     
     original.SetPowerLevel(999);
     EXPECT_EQ(copy.GetPowerLevel(), 200); 
@@ -206,22 +206,22 @@ TEST(Assignment4Test, DeepCopy) {
 }
 
 TEST(AllianceTest, Assignment4) {
-    Alliance a("Тест", "Лидер");
+    Alliance a("Test", "Leader");
     
     stringstream ss;
     ss << a;
-    EXPECT_NE(ss.str().find("Тест"), string::npos);
+    EXPECT_NE(ss.str().find("Test"), string::npos);
     
-    a.SetName("Новое имя");
-    EXPECT_EQ(a.GetName(), "Новое имя");
+    a.SetName("New name");
+    EXPECT_EQ(a.GetName(), "New name");
 }
 
 TEST(WeaponTest, Assignment4) {
-    Weapon w("Меч", 50);
+    Weapon w("Sword", 50);
     
     stringstream ss;
     ss << w;
-    EXPECT_NE(ss.str().find("Меч"), string::npos);
+    EXPECT_NE(ss.str().find("Sword"), string::npos);
     EXPECT_NE(ss.str().find("50"), string::npos);
     
     w.SetDamage(75);
@@ -229,7 +229,7 @@ TEST(WeaponTest, Assignment4) {
 }
 
 TEST(AutobotTest, Assignment4) {
-    Autobot a("Тест", "форма");
+    Autobot a("Test", "form");
     
     testing::internal::CaptureStdout();
     a.ShowInfo();
@@ -243,7 +243,7 @@ TEST(AutobotTest, Assignment4) {
 }
 
 TEST(DecepticonTest, Assignment4) {
-    Decepticon d("Тест", "форма");
+    Decepticon d("Test", "form");
     
     testing::internal::CaptureStdout();
     d.ShowInfo();
@@ -252,7 +252,7 @@ TEST(DecepticonTest, Assignment4) {
 }
 
 TEST(DinobotTest, Assignment4) {
-    Dinobot d("Тест", "форма");
+    Dinobot d("Test", "form");
     
     testing::internal::CaptureStdout();
     d.ShowInfo();

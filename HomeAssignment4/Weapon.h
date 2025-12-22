@@ -8,7 +8,7 @@
 
 #include <string>
 
-// композиции
+// composition
 class Weapon {
  public:
   Weapon(const std::string& name, int damage);

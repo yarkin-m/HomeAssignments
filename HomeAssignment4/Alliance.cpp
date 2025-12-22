@@ -11,11 +11,11 @@ using namespace std;
 
 Alliance::Alliance(const string& name, const string& leader): 
     name_(name), leader_(leader) {
-        cout << "Альянс: " << name_ << endl;
+        cout << "Alliance: " << name_ << endl;
     }
 
 Alliance::~Alliance() {
-    cout << "Альянс " << name_ << " распущен" << endl;
+    cout << "Alliance " << name_ << " disbanded" << endl;
 }
 
 string Alliance::GetName() const {
@@ -35,6 +35,6 @@ void Alliance::SetLeader(const string& leader) {
 }
 
 ostream& operator<<(ostream& os, const Alliance& alliance) {
-    os << "Альянс: " << alliance.name_ << " (Лидер: " << alliance.leader_ << ")";
+    os << "Alliance: " << alliance.name_ << " (Leader: " << alliance.leader_ << ")";
     return os;
 }

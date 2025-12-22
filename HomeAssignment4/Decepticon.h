@@ -9,7 +9,7 @@
 #include "Transformer.h"
 #include <string>
 
-// наследник Десептикон
+// Decepticon
 class Decepticon : public Transformer {
  public:
   Decepticon(const std::string& name, int height, int weight, int power_level,

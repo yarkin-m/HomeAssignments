@@ -10,7 +10,7 @@
 #include "Weapon.h"
 #include "Alliance.h"
 
-// Базовый класс
+// Base class
 class Transformer {
  public:
   Transformer(const std::string& name, int height, int weight, int power_level,

@@ -17,7 +17,7 @@ Transformer::Transformer(const string& name, int height, int weight,
     power_level_(power_level),
     weapon_(weapon),
     alliance_(alliance) {
-        cout << "Трансформер " << name_ << " создан" << endl;
+        cout << "Transformer " << name_ << " created" << endl;
 }
 
 Transformer::Transformer(const string& name)
@@ -27,7 +27,7 @@ Transformer::Transformer(const string& name)
       power_level_(100),
       weapon_(nullptr),
       alliance_(nullptr) {
-    cout << "Трансформер " << name_ << " создан (простой конструктор)" << endl;
+    cout << "Transformer " << name_ << " created (simple constructor)" << endl;
 }
 
 Transformer::Transformer(const string& name, int power_level)
@@ -37,21 +37,21 @@ Transformer::Transformer(const string& name, int power_level)
       power_level_(power_level),
       weapon_(nullptr),
       alliance_(nullptr) {
-    cout << "Трансформер " << name_ << " создан (мощность: " << power_level_ << ")" << endl;
+    cout << "Transformer " << name_ << " created (power: " << power_level_ << ")" << endl;
 }
 
 Transformer::Transformer(const Transformer& other)
-    : name_(other.name_ + " (копия)"),
+    : name_(other.name_ + " (copy)"),
       height_(other.height_),
       weight_(other.weight_),
       power_level_(other.power_level_),
       weapon_(other.weapon_ ? new Weapon(*other.weapon_) : nullptr),
       alliance_(other.alliance_) {
-    cout << "Копия трансформера " << name_ << " создана" << endl;
+    cout << "Copy of transformer " << name_ << " created" << endl;
 }
 
 Transformer::~Transformer() {
-  cout << "Трансформер " << name_ << " уничтожен" << endl;
+  cout << "Transformer " << name_ << " destroyed" << endl;
   delete weapon_;
 }
 
@@ -79,7 +79,7 @@ Alliance* Transformer::GetAlliance() const {
   return alliance_;
 }
 
-//setы
+//setters
 void Transformer::SetName(const std::string& name) {
   name_ = name;
 }
@@ -106,39 +106,39 @@ void Transformer::SetAlliance(Alliance* alliance) {
 
 /*
 string Transformer::Transform() {
-  return name_ + " трансформируется";
+  return name_ + " transforms";
 }
   
 string Transformer::Attack() {
-  return name_ + " атакует с силой " + to_string(power_level_);
+  return name_ + " attacks with power " + to_string(power_level_);
 }
 */
-//virtualы
+//virtual methods
 void Transformer::ShowInfo() const {
-    cout << "Transformer::ShowInfo() - базовый класс" << endl;
-    cout << "Имя: " << name_ << ", Мощность: " << power_level_ << endl;
+    cout << "Transformer::ShowInfo() - base class" << endl;
+    cout << "Name: " << name_ << ", Power: " << power_level_ << endl;
 }
 
 void Transformer::BattleCry() const {
-    cout << "Transformer::BattleCry() - базовый класс" << endl;
-    cout << name_ << ": За свободу и справедливость!" << endl;
+    cout << "Transformer::BattleCry() - base class" << endl;
+    cout << name_ << ": For freedom and justice!" << endl;
 }
 
 void Transformer::Transform() const {
-    cout << "Transformer::Transform() - базовый класс" << endl;
-    cout << name_ << " начинает трансформацию..." << endl;
+    cout << "Transformer::Transform() - base class" << endl;
+    cout << name_ << " starts transformation..." << endl;
 }
 
 void Transformer::Repair() const {
-    cout << "Transformer::Repair() - базовый класс" << endl;
-    cout << name_ << " проходит базовый ремонт" << endl;
+    cout << "Transformer::Repair() - base class" << endl;
+    cout << name_ << " undergoes basic repair" << endl;
 }
 
 string Transformer::GetInfo() const {
-    return "Имя: " + name_ + 
-         ", \nРост: " + std::to_string(height_) + "м" +
-         ", \nВес: " + std::to_string(weight_) + "т" +
-         ", \nМощность: " + std::to_string(power_level_) + "\n";
+    return "Name: " + name_ + 
+         ", \nHeight: " + std::to_string(height_) + "m" +
+         ", \nWeight: " + std::to_string(weight_) + "t" +
+         ", \nPower: " + std::to_string(power_level_) + "\n";
 }
 
 ostream& operator<<(std::ostream& os, const Transformer& transformer) {
