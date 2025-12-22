@@ -8,12 +8,13 @@
 
 #include "Transformer.h"
 #include <string>
+#include <memory>
 
 // Decepticon
 class Decepticon : public Transformer {
  public:
   Decepticon(const std::string& name, int height, int weight, int power_level,
-             Weapon* weapon, Alliance* alliance, const std::string& flying_form,
+              std::unique_ptr<Weapon> weapon, Alliance* alliance, const std::string& flying_form,
              bool has_wings);
   Decepticon(const std::string& name);
   Decepticon(const std::string& name, const std::string& flying_form);

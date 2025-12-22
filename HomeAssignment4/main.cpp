@@ -4,6 +4,7 @@
  *   Assignment 4
  */
 #include <iostream>
+#include <memory>
 #include "Alliance.h"
 #include "Weapon.h"
 #include "Transformer.h"
@@ -13,6 +14,7 @@
 #include <vector>
 
 using namespace std;
+
 /*
 void TestConstructorOverloading() {
     cout << "Constructor overloading test" << endl;
@@ -128,9 +130,9 @@ void TestConstructorOverloading() {
     cout << "\n\n6. COMPLEX COPY (with weapons and alliances):" << endl;
 
     Alliance* testAlliance = new Alliance("Test", "Leader");
-    Weapon* testWeapon = new Weapon("Test weapon", 75);
+    auto testWeapon = std::make_unique<Weapon>("Test weapon", 75);
     
-    Autobot original("Original", 12, 6, 180, testWeapon, testAlliance, "truck", 85);
+    Autobot original("Original", 12, 6, 180, std::move(testWeapon), testAlliance, "truck", 85);
     cout << "Created original: " << original << endl;
     cout << "Original weapon: " << original.GetWeapon()->GetName() << endl;
     
@@ -147,11 +149,10 @@ void TestConstructorOverloading() {
     cout << "Copy weapon damage: " << copy.GetWeapon()->GetDamage() << endl;
     
     delete testAlliance;
-    delete testWeapon;
   }
 */
-void TestVirtualMethods() {
 
+void TestVirtualMethods() {
     cout << "VIRTUAL METHODS TEST" << endl;
     
     cout << "\n1. DIRECT METHOD CALLS:" << endl;
@@ -204,7 +205,6 @@ void TestVirtualMethods() {
     
     vector<Transformer*> bigArmy;
     
-
     bigArmy.push_back(new Autobot("Optimus", "truck"));
     bigArmy.push_back(new Autobot("Bumblebee", "car"));
     bigArmy.push_back(new Autobot("Jazz", "sports car"));
@@ -217,7 +217,6 @@ void TestVirtualMethods() {
     bigArmy.push_back(new Dinobot("Slag", "triceratops"));
     bigArmy.push_back(new Dinobot("Snarl", "sabertooth"));
     
-
     for (size_t i = 0; i < bigArmy.size(); i++) {
         cout << "\n--- Fighter #" << (i + 1) << " ---" << endl;
         bigArmy[i]->ShowInfo();
@@ -235,68 +234,56 @@ void TestVirtualMethods() {
 }
 
 int main() {
-
-  Alliance* autobotAlliance = new Alliance("Autobots", "Optimus Prime");
-  Alliance* decepticonAlliance = new Alliance("Decepticons", "Megatron");
-  
-  Weapon* axe = new Weapon("Axe", 80);
-  Weapon* cannon = new Weapon("Cannon", 120);
-  Weapon* sword = new Weapon("Sword", 90);
-  
-  Autobot* optimus = new Autobot("Optimus Prime", 15, 8, 200, axe, autobotAlliance, "truck", 95);
-  
-  Decepticon* megatron = new Decepticon("Megatron", 14, 9, 180, cannon, decepticonAlliance, "airplane", true);
-  
-  Dinobot* grimlock = new Dinobot("Grimlock", 12, 10, 220, sword, autobotAlliance, "tyrannosaurus", 150);
-  
-  cout << "\nTESTING" << endl;
-  /*
-  cout << "\n1. Transformer information:" << endl;
-  cout << optimus->GetInfo() << endl;
-  cout << megatron->GetInfo() << endl;
-  cout << grimlock->GetInfo() << endl;
-  
-  cout << "\n2. Transformations:" << endl;
-  cout << optimus->Transform() << endl;
-  cout << megatron->Transform() << endl;
-  cout << grimlock->Transform() << endl;
-  
-  cout << "\n3. Attacks:" << endl;
-  cout << optimus->Attack() << endl;
-  cout << megatron->Attack() << endl;
-  cout << grimlock->Attack() << endl;
-  
-  cout << "\n4. Special abilities:" << endl;
-  cout << optimus->ProtectHumans() << endl;
-  cout << megatron->Terrorize() << endl;
-  cout << grimlock->Roar() << endl;
-  */
-  cout << "\nTests 1-4 for assignment 3" << endl;
-  cout << "\n5. Test get/set methods:" << endl;
-  optimus->SetPowerLevel(250);
-  cout << "New power level of Optimus: " << optimus->GetPowerLevel() << endl;
-  
-  cout << "\n6. Test composition and association:" << endl;
-  cout << "Optimus's weapon: " << optimus->GetWeapon()->GetName() 
-            << " (damage: " << optimus->GetWeapon()->GetDamage() << ")" << endl;
-  cout << "Megatron's alliance: " << megatron->GetAlliance()->GetName() 
-            << " (leader: " << megatron->GetAlliance()->GetLeader() << ")" << endl;
-  
-  cout << "\nTest operator <<" << endl;
-  cout << "Autobot alliance: " << *autobotAlliance << endl;      
-  cout << "Weapon: " << *sword << endl;         
-  cout << "Optimus Prime: "<< *optimus << endl;
-  
-  //TestConstructorOverloading();
-
-  TestVirtualMethods();
-  
-  cout << "\nDESTROYING OBJECTS" << endl;
-  delete optimus;
-  delete megatron;
-  delete grimlock;
-  delete autobotAlliance;
-  delete decepticonAlliance;
-  
-  return 0;
+    Alliance* autobotAlliance = new Alliance("Autobots", "Optimus Prime");
+    Alliance* decepticonAlliance = new Alliance("Decepticons", "Megatron");
+    
+    // Создаем оружие с помощью unique_ptr
+    auto axe = std::make_unique<Weapon>("Axe", 80);
+    auto cannon = std::make_unique<Weapon>("Cannon", 120);
+    auto sword = std::make_unique<Weapon>("Sword", 90);
+    
+    // Создаем трансформеров, передавая оружие с помощью std::move()
+    Autobot* optimus = new Autobot("Optimus Prime", 15, 8, 200, 
+                                   std::move(axe), autobotAlliance, 
+                                   "truck", 95);
+    
+    Decepticon* megatron = new Decepticon("Megatron", 14, 9, 180, 
+                                          std::move(cannon), decepticonAlliance, 
+                                          "airplane", true);
+    
+    Dinobot* grimlock = new Dinobot("Grimlock", 12, 10, 220, 
+                                    std::move(sword), autobotAlliance, 
+                                    "tyrannosaurus", 150);
+    
+    cout << "\nTESTING" << endl;
+    cout << "\nTests 1-4 for assignment 3" << endl;
+    
+    cout << "\n5. Test get/set methods:" << endl;
+    optimus->SetPowerLevel(250);
+    cout << "New power level of Optimus: " << optimus->GetPowerLevel() << endl;
+    
+    cout << "\n6. Test composition and association:" << endl;
+    cout << "Optimus's weapon: " << optimus->GetWeapon()->GetName() 
+         << " (damage: " << optimus->GetWeapon()->GetDamage() << ")" << endl;
+    cout << "Megatron's alliance: " << megatron->GetAlliance()->GetName() 
+         << " (leader: " << megatron->GetAlliance()->GetLeader() << ")" << endl;
+    
+    cout << "\nTest operator <<" << endl;
+    cout << "Autobot alliance: " << *autobotAlliance << endl;      
+    cout << "Weapon: " << *optimus->GetWeapon() << endl;         
+    cout << "Optimus Prime: " << *optimus << endl;
+    
+    // Раскомментируйте, если хотите тестировать перегрузку конструкторов
+    // TestConstructorOverloading();
+    
+    TestVirtualMethods();
+    
+    cout << "\nDESTROYING OBJECTS" << endl;
+    delete optimus;
+    delete megatron;
+    delete grimlock;
+    delete autobotAlliance;
+    delete decepticonAlliance;
+    
+    return 0;
 }

@@ -34,7 +34,7 @@ class Transformer {
   void SetHeight(int height);
   void SetWeight(int weight);
   void SetPowerLevel(int power_level);
-  void SetWeapon(std::unique_ptr<Weapon> weapon);
+  void SetWeapon(std::unique_ptr<Weapon> weapon_);
   void SetAlliance(Alliance* alliance);
 
   virtual void SpecialAbility() const = 0;

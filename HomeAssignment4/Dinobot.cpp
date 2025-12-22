@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Dinobot::Dinobot(const string& name, int height, int weight, int power_level, Weapon* weapon, Alliance* alliance,
+Dinobot::Dinobot(const string& name, int height, int weight, int power_level, std::unique_ptr<Weapon> weapon, Alliance* alliance,
     const string& dinosaur_form, int roar_power): 
         Transformer(name, height, weight, power_level, weapon, alliance),
         dinosaur_form_(dinosaur_form),
