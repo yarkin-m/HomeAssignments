@@ -8,19 +8,19 @@
 
 #include <string>
 
-// assotiation
+// associations
 class Alliance {
  public:
   Alliance(const std::string& name, const std::string& leader);
   ~Alliance();
+  friend std::ostream& operator<<(std::ostream& os, const Alliance& alliance);
 
   std::string GetName() const;
   std::string GetLeader() const;
 
-  // Sets
   void SetName(const std::string& name);
   void SetLeader(const std::string& leader);
-
+  
  private:
   std::string name_;
   std::string leader_;
