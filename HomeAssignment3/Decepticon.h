@@ -1,21 +1,24 @@
 /*
  *   Yarkin Makar
  *   st141442@student.spbu.ru
- *   Assignment 3
+ *   Assignment 4
  */
 #ifndef TRANSFORMERS_DECEPTICON_H
 #define TRANSFORMERS_DECEPTICON_H
 
 #include "Transformer.h"
 #include <string>
-#include <memory> 
+#include <memory>
 
 // Decepticon
 class Decepticon : public Transformer {
  public:
   Decepticon(const std::string& name, int height, int weight, int power_level,
-             std::unique_ptr<Weapon> weapon, Alliance* alliance,
-             const std::string& flying_form, bool has_wings);
+              std::unique_ptr<Weapon> weapon, Alliance* alliance, const std::string& flying_form,
+             bool has_wings);
+  Decepticon(const std::string& name);
+  Decepticon(const std::string& name, const std::string& flying_form);
+  Decepticon(const Decepticon& other);
 
   std::string GetFlyingForm() const;
   bool GetHasWings() const;
@@ -23,10 +26,18 @@ class Decepticon : public Transformer {
   void SetFlyingForm(const std::string& flying_form);
   void SetHasWings(bool has_wings);
 
+  /*
   std::string Terrorize();
-  
   std::string Attack() override;
-  std::string Transform() override;  
+  std::string Transform() override;
+  */
+  
+  void SpecialAbility() const override;
+  void ShowInfo() const override;
+  void BattleCry() const override;
+  void Transform() const override;
+
+  virtual void Terrorize() const;
 
  private:
   std::string flying_form_;
