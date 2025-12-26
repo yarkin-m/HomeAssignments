@@ -9,18 +9,18 @@ OBJ = $(SRC:.cpp=.o)
 TEST_OBJ = test_transformers.o
 MAIN_OBJ = main.o
 
-all: demo test_program
+TARGETS = demo test_program
+
+all: $(TARGETS)
 
 %.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 demo: $(OBJ) $(MAIN_OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJ) $(MAIN_OBJ)
-
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 test_program: $(OBJ) $(TEST_OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJ) $(TEST_OBJ) $(GTEST_FLAGS)
-
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_FLAGS)
 
 run: demo
 	./demo
@@ -29,6 +29,6 @@ test: test_program
 	./test_program
 
 clean:
-	rm -f *.o demo test
+	rm -f *.o $(TARGETS)
 
 .PHONY: all clean run test
