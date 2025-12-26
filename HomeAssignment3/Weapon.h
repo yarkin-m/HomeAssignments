@@ -1,7 +1,7 @@
 /*
  *   Yarkin Makar
  *   st141442@student.spbu.ru
- *   Assignment 3
+ *   Assignment 4
  */
 #ifndef TRANSFORMERS_WEAPON_H
 #define TRANSFORMERS_WEAPON_H
@@ -13,6 +13,7 @@ class Weapon {
  public:
   Weapon(const std::string& name, int damage);
   ~Weapon();
+  friend std::ostream& operator<<(std::ostream& os, const Weapon& weapon);
 
   std::string GetName() const;
   int GetDamage() const;
