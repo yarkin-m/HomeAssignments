@@ -1,11 +1,10 @@
 /*
  *   Yarkin Makar
  *   st141442@student.spbu.ru
- *   Assignment 4
+ *   Assignment 3
  */
 #include "Alliance.h"
 #include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -32,9 +31,4 @@ void Alliance::SetName(const string& name) {
 
 void Alliance::SetLeader(const string& leader) {
     leader_ = leader;
-}
-
-ostream& operator<<(ostream& os, const Alliance& alliance) {
-    os << "Alliance: " << alliance.name_ << " (Leader: " << alliance.leader_ << ")";
-    return os;
 }

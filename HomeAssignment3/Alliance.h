@@ -3,7 +3,7 @@
 
 #include <string>
 
-// ассоциации
+// asso
 class Alliance {
  public:
   Alliance(const std::string& name, const std::string& leader);
@@ -12,7 +12,7 @@ class Alliance {
   std::string GetName() const;
   std::string GetLeader() const;
 
-  // Set методы
+  // Sets
   void SetName(const std::string& name);
   void SetLeader(const std::string& leader);
 

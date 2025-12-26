@@ -1,5 +1,10 @@
+/*
+ *   Yarkin Makar
+ *   st141442@student.spbu.ru
+ *   Assignment 3
+ */
 #include <iostream>
-#include <memory> 
+#include <memory>
 #include "Autobot.h"
 #include "Decepticon.h"
 #include "Dinobot.h"

@@ -73,4 +73,4 @@ void Decepticon::Transform() const {
 void Decepticon::Terrorize() const {
     cout << "Decepticon::Terrorize() - Decepticon class" << endl;
     cout << GetName() << " spreads fear and destruction!" << endl;
-}
+} 
