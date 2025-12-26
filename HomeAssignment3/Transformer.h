@@ -1,22 +1,29 @@
 /*
  *   Yarkin Makar
  *   st141442@student.spbu.ru
- *   Assignment 3
+ *   Assignment 4
  */
 #ifndef TRANSFORMERS_TRANSFORMER_H
 #define TRANSFORMERS_TRANSFORMER_H
 
 #include <string>
-#include <memory>  
 #include "Weapon.h"
 #include "Alliance.h"
+#include <memory> 
+#include <iostream>
 
 // Base class
 class Transformer {
  public:
   Transformer(const std::string& name, int height, int weight, int power_level,
-              std::unique_ptr<Weapon> weapon, Alliance* alliance);  
+              std::unique_ptr<Weapon> weapon, Alliance* alliance);
+  Transformer(const std::string& name);
+  Transformer(const std::string& name, int power_level);
+  Transformer(const Transformer& other); 
+  Transformer& operator=(const Transformer& other) = delete; 
+
   virtual ~Transformer();
+  friend std::ostream& operator<<(std::ostream& os, const Transformer& transformer);
 
   std::string GetName() const;
   int GetHeight() const;
@@ -29,11 +36,20 @@ class Transformer {
   void SetHeight(int height);
   void SetWeight(int weight);
   void SetPowerLevel(int power_level);
-  void SetWeapon(std::unique_ptr<Weapon> weapon);  
+  void SetWeapon(std::unique_ptr<Weapon> weapon);
   void SetAlliance(Alliance* alliance);
 
+  virtual void SpecialAbility() const = 0;
+
+  /*
   virtual std::string Transform();
   virtual std::string Attack();
+  */
+
+  virtual void ShowInfo() const;
+  virtual void BattleCry() const;
+  virtual void Transform() const;
+  virtual void Repair() const;
   
   std::string GetInfo() const;
 
@@ -42,8 +58,8 @@ class Transformer {
   int height_;       
   int weight_;        
   int power_level_;   
-  std::unique_ptr<Weapon> weapon_;    // composition
-  Alliance* alliance_; // association
+  std::unique_ptr<Weapon> weapon_;   
+  Alliance* alliance_;
 };
 
 #endif
